@@ -1,0 +1,681 @@
+THERE_BE_DRAGONS_HERE
+#Teapot is missing, and does not understand #allInstances
+14 March 2020 10:13:02.146904 pm
+
+VM: Mac OS - x64 - 1015.3 - CoInterpreter VMMaker.oscog-eem.2509 uuid: 91e81f64-95de-4914-a960-8f842be3a194 Feb  7 2019
+StackToRegisterMappingCogit VMMaker.oscog-eem.2509 uuid: 91e81f64-95de-4914-a960-8f842be3a194 Feb  7 2019
+VM: 201902062351 https://github.com/OpenSmalltalk/opensmalltalk-vm.git Date: Wed Feb 6 15:51:18 2019 CommitHash: a838346 Plugins: 201902062351 https://github.com/OpenSmalltalk/opensmalltalk-vm.git
+
+Image: Pharo8.0.0 [Build information: Pharo-8.0.0+build.1124.sha.0932da82f08175e906b0e2a8052120c823374e9f (64 Bit)]
+
+UndefinedObject>>doesNotUnderstand: #allInstances
+	Receiver: nil
+	Arguments and temporary variables: 
+		aMessage: 	allInstances
+		exception: 	VariableNotDeclared: receiver of "allInstances" is nil
+		resumeValue: 	nil
+		node: 	RBVariableNode(Teapot
+	Receiver's instance variables: 
+nil
+
+Sich class>>startServer
+	Receiver: Sich
+	Arguments and temporary variables: 
+		sich: 	a Sich
+		teapot: 	ni
+	Receiver's instance variables: 
+		superclass: 	Object
+		methodDict: 	a MethodDictionary(#addCossacks:->Sich>>#addCossacks: #addCossacks:...etc...
+		format: 	65539
+		layout: 	a FixedLayout
+		organization: 	a ClassOrganization
+		subclasses: 	nil
+		name: 	#Sich
+		classPool: 	a Dictionary()
+		sharedPools: 	an OrderedCollection()
+		environment: 	a SystemDictionary(lots of globals)
+		category: 	#Sloboda
+		server: 	nil
+		active: 	nil
+
+
+UndefinedObject>>DoIt
+	Receiver: nil
+	Arguments and temporary variables: 
+
+	Receiver's instance variables: 
+nil
+
+OpalCompiler>>evaluate
+	Receiver: an OpalCompiler
+	Arguments and temporary variables: 
+		value: 	ni
+	Receiver's instance variables: 
+		ast: 	DoIt
+	^ Sich startServer
+		source: 	a ReadStream
+		context: 	nil
+		receiver: 	nil
+		compilationContext: 	a CompilationContext
+		compilationContextClass: 	nil
+
+
+RubSmalltalkEditor>>evaluate:andDo:
+	Receiver: a RubSmalltalkEditor
+	Arguments and temporary variables: 
+		aStream: 	a ReadStream
+		aBlock: 	[ :result | aBlock value: result ]
+		result: 	nil
+		rcvr: 	nil
+		ctxt: 	ni
+	Receiver's instance variables: 
+		defaultKeymappingIndex: 	an IdentityDictionary(#command->#(#noop: #cursorHome: #...etc...
+		textArea: 	a RubEditingArea(406490368)
+		findReplaceService: 	nil
+		selectorChooser: 	nil
+		notificationStrategy: 	a GLMPopperNotificationStrategy
+		completionEngine: 	a CompletionEngine
+
+
+RubSmalltalkEditor>>highlightEvaluateAndDo:
+	Receiver: a RubSmalltalkEditor
+	Arguments and temporary variables: 
+		aBlock: 	[ :result | text selection: result 
+	Receiver's instance variables: 
+		defaultKeymappingIndex: 	an IdentityDictionary(#command->#(#noop: #cursorHome: #...etc...
+		textArea: 	a RubEditingArea(406490368)
+		findReplaceService: 	nil
+		selectorChooser: 	nil
+		notificationStrategy: 	a GLMPopperNotificationStrategy
+		completionEngine: 	a CompletionEngine
+
+
+[ textMorph textArea editor highlightEvaluateAndDo: ann action.
+textMorph shoutStyler style: textMorph text ] in [ textMorph textArea
+	handleEdit: [ textMorph textArea editor highlightEvaluateAndDo: ann action.
+		textMorph shoutStyler style: textMorph text ] ] in GLMMorphicPharoScriptRenderer(GLMMorphicPharoCodeRenderer)>>actOnHighlightAndEvaluate:
+	Receiver: a GLMMorphicPharoScriptRenderer
+	Arguments and temporary variables: 
+		ann: 	a GLMHighlightAndEvaluat
+	Receiver's instance variables: 
+		renderer: 	a GLMMorphicRenderer
+		textMorph: 	a RubScrolledTextMorph(660451584)
+		textModel: 	a GLMRubricSmalltalkTextModel
+
+
+RubEditingArea(RubAbstractTextArea)>>handleEdit:
+	Receiver: a RubEditingArea(406490368)
+	Arguments and temporary variables: 
+		editBlock: 	[ textMorph textArea editor highlightEvaluateAndDo: ann action.
+text...etc..
+	Receiver's instance variables: 
+		bounds: 	(0@0) corner: (580@31)
+		owner: 	a TransformWithLayoutMorph(738399488)
+		submorphs: 	an Array(a RubPrimarySelectionMorph(518583296) a RubCursor(268952832...etc...
+		fullBounds: 	nil
+		color: 	Color transparent
+		extension: 	a MorphExtension (911179008) [other:  (announcer -> an Announcer) (k...etc...
+		model: 	a GLMRubricSmalltalkTextModel
+		paragraph: 	a RubShoutStylerDecorator
+		editor: 	a RubSmalltalkEditor
+		scrollPane: 	a RubTextScrollPane(975587328)
+		editingState: 	a RubEditingState
+		textStyle: 	a TextStyle Source Code Pro
+		textColor: 	Color white
+		margins: 	a Margin top: 6 left: 6 bottom: 6 right: 6
+		readOnly: 	false
+		menuAllowed: 	nil
+		editingMode: 	a RubSmalltalkScriptingMode
+		cursor: 	a RubCursor(268952832)
+		segments: 	an OrderedCollection(a RubHighlightSegmentMorph(481575936))
+		getMenuPolicy: 	nil
+		mouseDownPoint: 	nil
+		completionEngine: 	a CompletionEngine
+		maxLength: 	nil
+		findReplaceService: 	a SpRubFindReplaceService
+		wrapped: 	true
+		editorClass: 	RubSmalltalkEditor
+
+
+[ textMorph textArea
+	handleEdit: [ textMorph textArea editor highlightEvaluateAndDo: ann action.
+		textMorph shoutStyler style: textMorph text ] ] in GLMMorphicPharoScriptRenderer(GLMMorphicPharoCodeRenderer)>>actOnHighlightAndEvaluate:
+	Receiver: a GLMMorphicPharoScriptRenderer
+	Arguments and temporary variables: 
+		ann: 	a GLMHighlightAndEvaluat
+	Receiver's instance variables: 
+		renderer: 	a GLMMorphicRenderer
+		textMorph: 	a RubScrolledTextMorph(660451584)
+		textModel: 	a GLMRubricSmalltalkTextModel
+
+
+WorldState>>runStepMethodsIn:
+	Receiver: a WorldState
+	Arguments and temporary variables: 
+		aWorld: 	a WorldMorph(684500736) [world]
+		queue: 	WaitfreeQueue with 0 items
+		nextInQueue: 	[ textMorph textArea
+	handleEdit: [ textMorph textArea editor high...etc..
+	Receiver's instance variables: 
+		hands: 	an Array(a HandMorph(174219264))
+		damageRecorder: 	a DamageRecorder
+		stepList: 	a Heap(StepMessage(#stepAt: -> a GLMSystemWindow(17232384) named: Pla...etc...
+		lastStepTime: 	64419
+		lastStepMessage: 	nil
+		lastCycleTime: 	64442
+		alarms: 	a Heap(MorphicAlarm(#hideShow -> a RubCursor(268952832)))
+		lastAlarmTime: 	64419
+		menuBuilder: 	a PragmaMenuBuilder ( nil ) 
+		activeHand: 	a HandMorph(174219264)
+		currentCursor: 	((CursorWithMask
+	extent: (16@16)
+	depth: 1
+	fromArray: #(
+		2r0...etc...
+		worldRenderer: 	a VMWorldRenderer
+		realWindowExtent: 	(1680@1001)
+
+
+WorldMorph>>runStepMethods
+	Receiver: a WorldMorph(684500736) [world]
+	Arguments and temporary variables: 
+
+	Receiver's instance variables: 
+		bounds: 	(0@0) corner: (1680@1001)
+		owner: 	nil
+		submorphs: 	an Array(a MenubarMorph(1067345152) a TaskbarMorph(740090624) a GLMS...etc...
+		fullBounds: 	(0@0) corner: (1680@1001)
+		color: 	(Color r: 0.29521016617790813 g: 0.29521016617790813 b: 0.29521016617790...etc...
+		extension: 	a MorphExtension (479710720) [other:  (dragEnabled -> true) (dropEna...etc...
+		borderWidth: 	0
+		borderColor: 	(Color r: 0.8611925708699902 g: 1.0 b: 0.7223851417399805 alpha: 1...etc...
+		backgroundMorph: 	nil
+		worldState: 	a WorldState
+		griddingOn: 	nil
+
+
+WorldState>>doOneCycleNowFor:
+	Receiver: a WorldState
+	Arguments and temporary variables: 
+		aWorld: 	a WorldMorph(684500736) [world
+	Receiver's instance variables: 
+		hands: 	an Array(a HandMorph(174219264))
+		damageRecorder: 	a DamageRecorder
+		stepList: 	a Heap(StepMessage(#stepAt: -> a GLMSystemWindow(17232384) named: Pla...etc...
+		lastStepTime: 	64419
+		lastStepMessage: 	nil
+		lastCycleTime: 	64442
+		alarms: 	a Heap(MorphicAlarm(#hideShow -> a RubCursor(268952832)))
+		lastAlarmTime: 	64419
+		menuBuilder: 	a PragmaMenuBuilder ( nil ) 
+		activeHand: 	a HandMorph(174219264)
+		currentCursor: 	((CursorWithMask
+	extent: (16@16)
+	depth: 1
+	fromArray: #(
+		2r0...etc...
+		worldRenderer: 	a VMWorldRenderer
+		realWindowExtent: 	(1680@1001)
+
+
+WorldState>>doOneCycleFor:
+	Receiver: a WorldState
+	Arguments and temporary variables: 
+		aWorld: 	a WorldMorph(684500736) [world
+	Receiver's instance variables: 
+		hands: 	an Array(a HandMorph(174219264))
+		damageRecorder: 	a DamageRecorder
+		stepList: 	a Heap(StepMessage(#stepAt: -> a GLMSystemWindow(17232384) named: Pla...etc...
+		lastStepTime: 	64419
+		lastStepMessage: 	nil
+		lastCycleTime: 	64442
+		alarms: 	a Heap(MorphicAlarm(#hideShow -> a RubCursor(268952832)))
+		lastAlarmTime: 	64419
+		menuBuilder: 	a PragmaMenuBuilder ( nil ) 
+		activeHand: 	a HandMorph(174219264)
+		currentCursor: 	((CursorWithMask
+	extent: (16@16)
+	depth: 1
+	fromArray: #(
+		2r0...etc...
+		worldRenderer: 	a VMWorldRenderer
+		realWindowExtent: 	(1680@1001)
+
+
+WorldMorph>>doOneCycle
+	Receiver: a WorldMorph(684500736) [world]
+	Arguments and temporary variables: 
+
+	Receiver's instance variables: 
+		bounds: 	(0@0) corner: (1680@1001)
+		owner: 	nil
+		submorphs: 	an Array(a MenubarMorph(1067345152) a TaskbarMorph(740090624) a GLMS...etc...
+		fullBounds: 	(0@0) corner: (1680@1001)
+		color: 	(Color r: 0.29521016617790813 g: 0.29521016617790813 b: 0.29521016617790...etc...
+		extension: 	a MorphExtension (479710720) [other:  (dragEnabled -> true) (dropEna...etc...
+		borderWidth: 	0
+		borderColor: 	(Color r: 0.8611925708699902 g: 1.0 b: 0.7223851417399805 alpha: 1...etc...
+		backgroundMorph: 	nil
+		worldState: 	a WorldState
+		griddingOn: 	nil
+
+
+WorldMorph class>>doOneCycle
+	Receiver: WorldMorph
+	Arguments and temporary variables: 
+
+	Receiver's instance variables: 
+		superclass: 	PasteUpMorph
+		methodDict: 	a MethodDictionary(#acceptDroppingMorph:event:->WorldMorph>>#accept...etc...
+		format: 	65547
+		layout: 	a FixedLayout
+		organization: 	a ClassOrganization
+		subclasses: 	{AthensWorldMorph. OSWindowWorldMorph}
+		name: 	#WorldMorph
+		classPool: 	a Dictionary(#AllowDropFiles->nil #CursorOwnerWorld->a WorldMorph(68...etc...
+		sharedPools: 	an OrderedCollection()
+		environment: 	a SystemDictionary(lots of globals)
+		category: 	#'Morphic-Core-Worlds'
+		announcer: 	nil
+		displayScaleFactor: 	1
+
+
+[ [ WorldMorph doOneCycle.
+Processor yield.
+false ] whileFalse: [  ] ] in MorphicUIManager>>spawnNewProcess
+	Receiver: a MorphicUIManager
+	Arguments and temporary variables: 
+
+	Receiver's instance variables: 
+		activeTranscript: 	nil
+
+
+[ self value.
+Processor terminateActive ] in BlockClosure>>newProcess
+	Receiver: [ [ WorldMorph doOneCycle.
+Processor yield.
+false ] whileFalse: [  ] ]
+	Arguments and temporary variables: 
+
+	Receiver's instance variables: 
+		outerContext: 	MorphicUIManager>>spawnNewProcess
+		startpc: 	125
+		numArgs: 	0
+
+
+
+--- The full stack ---
+UndefinedObject>>doesNotUnderstand: #allInstances
+Sich class>>startServer
+UndefinedObject>>DoIt
+OpalCompiler>>evaluate
+RubSmalltalkEditor>>evaluate:andDo:
+RubSmalltalkEditor>>highlightEvaluateAndDo:
+[ textMorph textArea editor highlightEvaluateAndDo: ann action.
+textMorph shoutStyler style: textMorph text ] in [ textMorph textArea
+	handleEdit: [ textMorph textArea editor highlightEvaluateAndDo: ann action.
+		textMorph shoutStyler style: textMorph text ] ] in GLMMorphicPharoScriptRenderer(GLMMorphicPharoCodeRenderer)>>actOnHighlightAndEvaluate:
+RubEditingArea(RubAbstractTextArea)>>handleEdit:
+[ textMorph textArea
+	handleEdit: [ textMorph textArea editor highlightEvaluateAndDo: ann action.
+		textMorph shoutStyler style: textMorph text ] ] in GLMMorphicPharoScriptRenderer(GLMMorphicPharoCodeRenderer)>>actOnHighlightAndEvaluate:
+WorldState>>runStepMethodsIn:
+WorldMorph>>runStepMethods
+WorldState>>doOneCycleNowFor:
+WorldState>>doOneCycleFor:
+WorldMorph>>doOneCycle
+WorldMorph class>>doOneCycle
+[ [ WorldMorph doOneCycle.
+Processor yield.
+false ] whileFalse: [  ] ] in MorphicUIManager>>spawnNewProcess
+[ self value.
+Processor terminateActive ] in BlockClosure>>newProcess
+-------------------------------------------------------------------------------
+
+THERE_BE_DRAGONS_HERE
+SubscriptOutOfBounds: 0
+14 March 2020 10:14:15.023357 pm
+
+VM: Mac OS - x64 - 1015.3 - CoInterpreter VMMaker.oscog-eem.2509 uuid: 91e81f64-95de-4914-a960-8f842be3a194 Feb  7 2019
+StackToRegisterMappingCogit VMMaker.oscog-eem.2509 uuid: 91e81f64-95de-4914-a960-8f842be3a194 Feb  7 2019
+VM: 201902062351 https://github.com/OpenSmalltalk/opensmalltalk-vm.git Date: Wed Feb 6 15:51:18 2019 CommitHash: a838346 Plugins: 201902062351 https://github.com/OpenSmalltalk/opensmalltalk-vm.git
+
+Image: Pharo8.0.0 [Build information: Pharo-8.0.0+build.1124.sha.0932da82f08175e906b0e2a8052120c823374e9f (64 Bit)]
+
+Array(Object)>>errorSubscriptBounds:
+	Receiver: #()
+	Arguments and temporary variables: 
+		index: 	
+	Receiver's instance variables: 
+#()
+
+Array(Object)>>at:
+	Receiver: #()
+	Arguments and temporary variables: 
+		index: 	
+	Receiver's instance variables: 
+#()
+
+Array(SequenceableCollection)>>last
+	Receiver: #()
+	Arguments and temporary variables: 
+
+	Receiver's instance variables: 
+#()
+
+Sich class>>startServer
+	Receiver: Sich
+	Arguments and temporary variables: 
+		sich: 	a Sich
+		teapot: 	ni
+	Receiver's instance variables: 
+		superclass: 	Object
+		methodDict: 	a MethodDictionary(#addCossacks:->Sich>>#addCossacks: #addCossacks:...etc...
+		format: 	65539
+		layout: 	a FixedLayout
+		organization: 	a ClassOrganization
+		subclasses: 	nil
+		name: 	#Sich
+		classPool: 	a Dictionary()
+		sharedPools: 	an OrderedCollection()
+		environment: 	a SystemDictionary(lots of globals)
+		category: 	#Sloboda
+		server: 	nil
+		active: 	nil
+
+
+UndefinedObject>>DoIt
+	Receiver: nil
+	Arguments and temporary variables: 
+
+	Receiver's instance variables: 
+nil
+
+OpalCompiler>>evaluate
+	Receiver: an OpalCompiler
+	Arguments and temporary variables: 
+		value: 	ni
+	Receiver's instance variables: 
+		ast: 	DoIt
+	^ Sich startServer
+		source: 	a ReadStream
+		context: 	nil
+		receiver: 	nil
+		compilationContext: 	a CompilationContext
+		compilationContextClass: 	nil
+
+
+RubSmalltalkEditor>>evaluate:andDo:
+	Receiver: a RubSmalltalkEditor
+	Arguments and temporary variables: 
+		aStream: 	a ReadStream
+		aBlock: 	[ :result | aBlock value: result ]
+		result: 	nil
+		rcvr: 	nil
+		ctxt: 	ni
+	Receiver's instance variables: 
+		defaultKeymappingIndex: 	nil
+		textArea: 	a RubEditingArea(791428864)
+		findReplaceService: 	nil
+		selectorChooser: 	nil
+		notificationStrategy: 	a GLMPopperNotificationStrategy
+		completionEngine: 	a CompletionEngine
+
+
+RubSmalltalkEditor>>highlightEvaluateAndDo:
+	Receiver: a RubSmalltalkEditor
+	Arguments and temporary variables: 
+		aBlock: 	[ :result | text selection: result 
+	Receiver's instance variables: 
+		defaultKeymappingIndex: 	nil
+		textArea: 	a RubEditingArea(791428864)
+		findReplaceService: 	nil
+		selectorChooser: 	nil
+		notificationStrategy: 	a GLMPopperNotificationStrategy
+		completionEngine: 	a CompletionEngine
+
+
+[ textMorph textArea editor highlightEvaluateAndDo: ann action.
+textMorph shoutStyler style: textMorph text ] in [ textMorph textArea
+	handleEdit: [ textMorph textArea editor highlightEvaluateAndDo: ann action.
+		textMorph shoutStyler style: textMorph text ] ] in GLMMorphicPharoScriptRenderer(GLMMorphicPharoCodeRenderer)>>actOnHighlightAndEvaluate:
+	Receiver: a GLMMorphicPharoScriptRenderer
+	Arguments and temporary variables: 
+		ann: 	a GLMHighlightAndEvaluat
+	Receiver's instance variables: 
+		renderer: 	a GLMMorphicRenderer
+		textMorph: 	a RubScrolledTextMorph(326318848)
+		textModel: 	a GLMRubricSmalltalkTextModel
+
+
+RubEditingArea(RubAbstractTextArea)>>handleEdit:
+	Receiver: a RubEditingArea(791428864)
+	Arguments and temporary variables: 
+		editBlock: 	[ textMorph textArea editor highlightEvaluateAndDo: ann action.
+text...etc..
+	Receiver's instance variables: 
+		bounds: 	(0@0) corner: (580@31)
+		owner: 	a TransformWithLayoutMorph(33083904)
+		submorphs: 	an Array(a RubCursor(256878336) a RubPrimarySelectionMorph(913943040...etc...
+		fullBounds: 	nil
+		color: 	Color transparent
+		extension: 	a MorphExtension (764149760) [other:  (announcer -> an Announcer) (k...etc...
+		model: 	a GLMRubricSmalltalkTextModel
+		paragraph: 	a RubShoutStylerDecorator
+		editor: 	a RubSmalltalkEditor
+		scrollPane: 	a RubTextScrollPane(135395072)
+		editingState: 	a RubEditingState
+		textStyle: 	a TextStyle Source Code Pro
+		textColor: 	Color white
+		margins: 	a Margin top: 6 left: 6 bottom: 6 right: 6
+		readOnly: 	false
+		menuAllowed: 	nil
+		editingMode: 	a RubSmalltalkScriptingMode
+		cursor: 	a RubCursor(256878336)
+		segments: 	an OrderedCollection(a RubHighlightSegmentMorph(40941824))
+		getMenuPolicy: 	nil
+		mouseDownPoint: 	nil
+		completionEngine: 	a CompletionEngine
+		maxLength: 	nil
+		findReplaceService: 	a SpRubFindReplaceService
+		wrapped: 	true
+		editorClass: 	RubSmalltalkEditor
+
+
+[ textMorph textArea
+	handleEdit: [ textMorph textArea editor highlightEvaluateAndDo: ann action.
+		textMorph shoutStyler style: textMorph text ] ] in GLMMorphicPharoScriptRenderer(GLMMorphicPharoCodeRenderer)>>actOnHighlightAndEvaluate:
+	Receiver: a GLMMorphicPharoScriptRenderer
+	Arguments and temporary variables: 
+		ann: 	a GLMHighlightAndEvaluat
+	Receiver's instance variables: 
+		renderer: 	a GLMMorphicRenderer
+		textMorph: 	a RubScrolledTextMorph(326318848)
+		textModel: 	a GLMRubricSmalltalkTextModel
+
+
+WorldState>>runStepMethodsIn:
+	Receiver: a WorldState
+	Arguments and temporary variables: 
+		aWorld: 	a WorldMorph(684500736) [world]
+		queue: 	WaitfreeQueue with 0 items
+		nextInQueue: 	[ textMorph textArea
+	handleEdit: [ textMorph textArea editor high...etc..
+	Receiver's instance variables: 
+		hands: 	an Array(a HandMorph(174219264))
+		damageRecorder: 	a DamageRecorder
+		stepList: 	a Heap(StepMessage(#stepAt: -> a GLMSystemWindow(86984704) named: Pla...etc...
+		lastStepTime: 	137290
+		lastStepMessage: 	nil
+		lastCycleTime: 	137314
+		alarms: 	a Heap(MorphicAlarm(#hideShow -> a RubCursor(256878336)))
+		lastAlarmTime: 	137290
+		menuBuilder: 	a PragmaMenuBuilder ( nil ) 
+		activeHand: 	a HandMorph(174219264)
+		currentCursor: 	((CursorWithMask
+	extent: (16@16)
+	depth: 1
+	fromArray: #(
+		2r0...etc...
+		worldRenderer: 	a VMWorldRenderer
+		realWindowExtent: 	(1680@1001)
+
+
+WorldMorph>>runStepMethods
+	Receiver: a WorldMorph(684500736) [world]
+	Arguments and temporary variables: 
+
+	Receiver's instance variables: 
+		bounds: 	(0@0) corner: (1680@1001)
+		owner: 	nil
+		submorphs: 	an Array(a MenubarMorph(319191040) a TaskbarMorph(740090624) a GLMSy...etc...
+		fullBounds: 	(0@0) corner: (1680@1001)
+		color: 	(Color r: 0.29521016617790813 g: 0.29521016617790813 b: 0.29521016617790...etc...
+		extension: 	a MorphExtension (479710720) [other:  (dragEnabled -> true) (dropEna...etc...
+		borderWidth: 	0
+		borderColor: 	(Color r: 0.8611925708699902 g: 1.0 b: 0.7223851417399805 alpha: 1...etc...
+		backgroundMorph: 	nil
+		worldState: 	a WorldState
+		griddingOn: 	nil
+
+
+WorldState>>doOneCycleNowFor:
+	Receiver: a WorldState
+	Arguments and temporary variables: 
+		aWorld: 	a WorldMorph(684500736) [world
+	Receiver's instance variables: 
+		hands: 	an Array(a HandMorph(174219264))
+		damageRecorder: 	a DamageRecorder
+		stepList: 	a Heap(StepMessage(#stepAt: -> a GLMSystemWindow(86984704) named: Pla...etc...
+		lastStepTime: 	137290
+		lastStepMessage: 	nil
+		lastCycleTime: 	137314
+		alarms: 	a Heap(MorphicAlarm(#hideShow -> a RubCursor(256878336)))
+		lastAlarmTime: 	137290
+		menuBuilder: 	a PragmaMenuBuilder ( nil ) 
+		activeHand: 	a HandMorph(174219264)
+		currentCursor: 	((CursorWithMask
+	extent: (16@16)
+	depth: 1
+	fromArray: #(
+		2r0...etc...
+		worldRenderer: 	a VMWorldRenderer
+		realWindowExtent: 	(1680@1001)
+
+
+WorldState>>doOneCycleFor:
+	Receiver: a WorldState
+	Arguments and temporary variables: 
+		aWorld: 	a WorldMorph(684500736) [world
+	Receiver's instance variables: 
+		hands: 	an Array(a HandMorph(174219264))
+		damageRecorder: 	a DamageRecorder
+		stepList: 	a Heap(StepMessage(#stepAt: -> a GLMSystemWindow(86984704) named: Pla...etc...
+		lastStepTime: 	137290
+		lastStepMessage: 	nil
+		lastCycleTime: 	137314
+		alarms: 	a Heap(MorphicAlarm(#hideShow -> a RubCursor(256878336)))
+		lastAlarmTime: 	137290
+		menuBuilder: 	a PragmaMenuBuilder ( nil ) 
+		activeHand: 	a HandMorph(174219264)
+		currentCursor: 	((CursorWithMask
+	extent: (16@16)
+	depth: 1
+	fromArray: #(
+		2r0...etc...
+		worldRenderer: 	a VMWorldRenderer
+		realWindowExtent: 	(1680@1001)
+
+
+WorldMorph>>doOneCycle
+	Receiver: a WorldMorph(684500736) [world]
+	Arguments and temporary variables: 
+
+	Receiver's instance variables: 
+		bounds: 	(0@0) corner: (1680@1001)
+		owner: 	nil
+		submorphs: 	an Array(a MenubarMorph(319191040) a TaskbarMorph(740090624) a GLMSy...etc...
+		fullBounds: 	(0@0) corner: (1680@1001)
+		color: 	(Color r: 0.29521016617790813 g: 0.29521016617790813 b: 0.29521016617790...etc...
+		extension: 	a MorphExtension (479710720) [other:  (dragEnabled -> true) (dropEna...etc...
+		borderWidth: 	0
+		borderColor: 	(Color r: 0.8611925708699902 g: 1.0 b: 0.7223851417399805 alpha: 1...etc...
+		backgroundMorph: 	nil
+		worldState: 	a WorldState
+		griddingOn: 	nil
+
+
+WorldMorph class>>doOneCycle
+	Receiver: WorldMorph
+	Arguments and temporary variables: 
+
+	Receiver's instance variables: 
+		superclass: 	PasteUpMorph
+		methodDict: 	a MethodDictionary(#acceptDroppingMorph:event:->WorldMorph>>#accept...etc...
+		format: 	65547
+		layout: 	a FixedLayout
+		organization: 	a ClassOrganization
+		subclasses: 	{AthensWorldMorph. OSWindowWorldMorph}
+		name: 	#WorldMorph
+		classPool: 	a Dictionary(#AllowDropFiles->nil #CursorOwnerWorld->a WorldMorph(68...etc...
+		sharedPools: 	an OrderedCollection()
+		environment: 	a SystemDictionary(lots of globals)
+		category: 	#'Morphic-Core-Worlds'
+		announcer: 	nil
+		displayScaleFactor: 	1
+
+
+[ [ WorldMorph doOneCycle.
+Processor yield.
+false ] whileFalse: [  ] ] in MorphicUIManager>>spawnNewProcess
+	Receiver: a MorphicUIManager
+	Arguments and temporary variables: 
+
+	Receiver's instance variables: 
+		activeTranscript: 	Transcript
+
+
+[ self value.
+Processor terminateActive ] in BlockClosure>>newProcess
+	Receiver: [ [ WorldMorph doOneCycle.
+Processor yield.
+false ] whileFalse: [  ] ]
+	Arguments and temporary variables: 
+
+	Receiver's instance variables: 
+		outerContext: 	MorphicUIManager>>spawnNewProcess
+		startpc: 	125
+		numArgs: 	0
+
+
+
+--- The full stack ---
+Array(Object)>>errorSubscriptBounds:
+Array(Object)>>at:
+Array(SequenceableCollection)>>last
+Sich class>>startServer
+UndefinedObject>>DoIt
+OpalCompiler>>evaluate
+RubSmalltalkEditor>>evaluate:andDo:
+RubSmalltalkEditor>>highlightEvaluateAndDo:
+[ textMorph textArea editor highlightEvaluateAndDo: ann action.
+textMorph shoutStyler style: textMorph text ] in [ textMorph textArea
+	handleEdit: [ textMorph textArea editor highlightEvaluateAndDo: ann action.
+		textMorph shoutStyler style: textMorph text ] ] in GLMMorphicPharoScriptRenderer(GLMMorphicPharoCodeRenderer)>>actOnHighlightAndEvaluate:
+RubEditingArea(RubAbstractTextArea)>>handleEdit:
+[ textMorph textArea
+	handleEdit: [ textMorph textArea editor highlightEvaluateAndDo: ann action.
+		textMorph shoutStyler style: textMorph text ] ] in GLMMorphicPharoScriptRenderer(GLMMorphicPharoCodeRenderer)>>actOnHighlightAndEvaluate:
+WorldState>>runStepMethodsIn:
+WorldMorph>>runStepMethods
+WorldState>>doOneCycleNowFor:
+WorldState>>doOneCycleFor:
+WorldMorph>>doOneCycle
+WorldMorph class>>doOneCycle
+[ [ WorldMorph doOneCycle.
+Processor yield.
+false ] whileFalse: [  ] ] in MorphicUIManager>>spawnNewProcess
+[ self value.
+Processor terminateActive ] in BlockClosure>>newProcess
+-------------------------------------------------------------------------------
+
