@@ -21,6 +21,19 @@ Sich class >> active [
 	^ active
 ]
 
+{ #category : #'as yet unclassified' }
+Sich class >> loadDeps [
+Metacello new
+	baseline: 'Teapot';
+	repository: 'github://zeroflag/teapot:master/source';
+	load.
+
+Metacello new
+  repository: 'github://svenvc/NeoJSON/repository';
+  baseline: 'NeoJSON';
+  load.
+]
+
 { #category : #accessing }
 Sich class >> neoJsonMapping: mapper [
 mapper for: self do: [ :mapping | mapping mapInstVars: #(cossacks money) ]
