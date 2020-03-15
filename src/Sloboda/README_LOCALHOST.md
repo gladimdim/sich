@@ -1,3 +1,9 @@
+Build container:
+
+```
+docker image build -t pharo --build-arg PHARO_IMAGE_VERSION=80 ./
+```
+
 Start container:
 
 ```
