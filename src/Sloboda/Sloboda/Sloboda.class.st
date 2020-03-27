@@ -9,6 +9,11 @@ Class {
 	#category : #Sloboda
 }
 
+{ #category : #accessing }
+Sloboda class >> neoJsonMapping: mapper [
+mapper for: self do: [ :mapping | mapping mapInstVars: #(cossacks money name) ]
+]
+
 { #category : #'as yet unclassified' }
 Sloboda class >> withName: aName withMoney: aMoney withCossacks: aCossacks [
 |c|

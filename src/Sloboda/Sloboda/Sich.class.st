@@ -56,6 +56,7 @@ Sich class >> startServer [
 }.
 teapot
 	GET: '/sichStats' -> sich;
+	GET: '/slobodaStats/<id>' -> [:req | sich sloboda: (req at: #id)];
 	PUT: '/sendSupport/<sloboda_id>/money/<value>' -> [:req | sich addMoney: ((req at: #value) asInteger) fromSloboda: (req at: #sloboda_id)];
 	PUT: '/sendSupport/<sloboda_id>/cossacks/<value>' -> [:req | sich addCossacks: ((req at: #value) asInteger) fromSloboda: (req at: #sloboda_id)].
 	
@@ -127,4 +128,9 @@ registry := Dictionary new
 { #category : #accessing }
 Sich >> money [
 	^ money
+]
+
+{ #category : #'as yet unclassified' }
+Sich >> sloboda: aSloboda [
+^ registry at: aSloboda
 ]
