@@ -56,7 +56,11 @@ Sich class >> startServer [
 }.
 teapot
 	GET: '/sichStats' -> sich;
-	GET: '/slobodaStats/<id>' -> [:req | sich sloboda: (req at: #id)];
+	GET: '/slobodaStats/<id>' -> [:req | 
+		|sloboda|
+		sloboda := sich sloboda: (req at: #id).
+		sloboda ifNil: [TeaResponse notFound ] ifNotNil: [sloboda].
+		];
 	PUT: '/sendSupport/<sloboda_id>/money/<value>' -> [:req | sich addMoney: ((req at: #value) asInteger) fromSloboda: (req at: #sloboda_id)];
 	PUT: '/sendSupport/<sloboda_id>/cossacks/<value>' -> [:req | sich addCossacks: ((req at: #value) asInteger) fromSloboda: (req at: #sloboda_id)].
 	
@@ -132,5 +136,5 @@ Sich >> money [
 
 { #category : #'as yet unclassified' }
 Sich >> sloboda: aSloboda [
-^ registry at: aSloboda
+^ registry at: aSloboda ifAbsent: nil
 ]
