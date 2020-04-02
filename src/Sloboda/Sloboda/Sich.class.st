@@ -7,11 +7,13 @@ Class {
 	#instVars : [
 		'cossacks',
 		'money',
-		'registry'
+		'registry',
+		'tasks'
 	],
 	#classInstVars : [
 		'server',
-		'active'
+		'active',
+		'tasks'
 	],
 	#category : #Sloboda
 }
@@ -48,6 +50,7 @@ Sich class >> server [
 Sich class >> startServer [
 | sich teapot |
  sich := self new.
+ tasks := SLTasks new.
  teapot := Teapot allInstances last.
  teapot ifNil: [ teapot := Teapot  ].
  teapot stop.
@@ -62,7 +65,8 @@ teapot
 		sloboda ifNil: [TeaResponse notFound ] ifNotNil: [sloboda].
 		];
 	PUT: '/sendSupport/<sloboda_id>/money/<value>' -> [:req | sich addMoney: ((req at: #value) asInteger) fromSloboda: (req at: #sloboda_id)];
-	PUT: '/sendSupport/<sloboda_id>/cossacks/<value>' -> [:req | sich addCossacks: ((req at: #value) asInteger) fromSloboda: (req at: #sloboda_id)].
+	PUT: '/sendSupport/<sloboda_id>/cossacks/<value>' -> [:req | sich addCossacks: ((req at: #value) asInteger) fromSloboda: (req at: #sloboda_id)];
+	GET: '/tasks' -> [ :req | tasks ].
 	
 	teapot start.
 	server := teapot.
@@ -125,7 +129,8 @@ Sich >> gtPreviewFor: aView [
 Sich >> initialize [
 money := 0.
 cossacks := 0.
-registry := Dictionary new
+registry := Dictionary new.
+tasks := SLTasks new.
 
 ]
 
