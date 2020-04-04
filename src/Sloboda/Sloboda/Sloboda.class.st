@@ -57,7 +57,7 @@ Sloboda >> gtPreviewFor: aView [
 Sloboda >> initialize [
 money := 0.
 cossacks := 0.
-name = 'No name'
+name := 'No name'
 ]
 
 { #category : #accessing }
