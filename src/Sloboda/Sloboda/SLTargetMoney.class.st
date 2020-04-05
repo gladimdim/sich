@@ -1,3 +1,6 @@
+"
+I represent the Money target for the Task
+"
 Class {
 	#name : #SLTargetMoney,
 	#superclass : #SLTarget,

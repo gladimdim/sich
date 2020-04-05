@@ -143,3 +143,8 @@ Sich >> money [
 Sich >> sloboda: aSloboda [
 ^ registry at: aSloboda ifAbsent: nil
 ]
+
+{ #category : #accessing }
+Sich >> tasks [
+	^ tasks
+]

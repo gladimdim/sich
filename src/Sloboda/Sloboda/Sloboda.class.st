@@ -1,3 +1,8 @@
+"
+I represent a Sloboda or 'city'.
+
+My main responsibilities are: tracking amount of cossacks money sent to the sich by the player.
+"
 Class {
 	#name : #Sloboda,
 	#superclass : #Object,

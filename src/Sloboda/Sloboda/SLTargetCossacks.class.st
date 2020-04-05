@@ -1,3 +1,6 @@
+"
+I represent Cossacks target for the Task
+"
 Class {
 	#name : #SLTargetCossacks,
 	#superclass : #SLTarget,

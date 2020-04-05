@@ -1,3 +1,8 @@
+"
+I am responsible for providing details for the Task issued by Sich. 
+
+I have a name (should be short) and description (can be long). A target property is an instance of SLTarget subclasses.
+"
 Class {
 	#name : #SLTask,
 	#superclass : #Object,

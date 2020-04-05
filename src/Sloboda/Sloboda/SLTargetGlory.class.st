@@ -1,3 +1,7 @@
+"
+I represent the Glory target for the Task
+
+"
 Class {
 	#name : #SLTargetGlory,
 	#superclass : #SLTarget,
