@@ -4,14 +4,15 @@ Class {
 	#instVars : [
 		'name',
 		'money',
-		'cossacks'
+		'cossacks',
+		'activeTasks'
 	],
 	#category : #Sloboda
 }
 
 { #category : #accessing }
 Sloboda class >> neoJsonMapping: mapper [
-mapper for: self do: [ :mapping | mapping mapInstVars: #(cossacks money name) ]
+mapper for: self do: [ :mapping | mapping mapInstVars: #(cossacks money name activeTasks) ]
 ]
 
 { #category : #'as yet unclassified' }
@@ -32,6 +33,11 @@ cossacks := cossacks + aCossacks
 { #category : #adding }
 Sloboda >> addMoney: aMoney [
 money := money + aMoney
+]
+
+{ #category : #adding }
+Sloboda >> addTask: anActiveTask [
+activeTasks add: anActiveTask
 ]
 
 { #category : #accessing }
@@ -57,7 +63,7 @@ Sloboda >> gtPreviewFor: aView [
 Sloboda >> initialize [
 money := 0.
 cossacks := 0.
-name = 'No name'
+name := 'No name'
 ]
 
 { #category : #accessing }

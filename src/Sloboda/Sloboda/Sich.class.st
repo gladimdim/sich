@@ -66,7 +66,8 @@ teapot
 		];
 	PUT: '/sendSupport/<sloboda_id>/money/<value>' -> [:req | sich addMoney: ((req at: #value) asInteger) fromSloboda: (req at: #sloboda_id)];
 	PUT: '/sendSupport/<sloboda_id>/cossacks/<value>' -> [:req | sich addCossacks: ((req at: #value) asInteger) fromSloboda: (req at: #sloboda_id)];
-	GET: '/tasks' -> [ :req | tasks ].
+	GET: '/tasks' -> [ :req | tasks ];
+PUT: '/registerTask/<sloboda_id>/<task_name>' -> [ :req | sich registerTask: #task_name forSloboda: #sloboda_id ].
 	
 	teapot start.
 	server := teapot.
@@ -91,9 +92,9 @@ cossacks := cossacks + (aNumber asNumber)
 Sich >> addCossacks: aNumber fromSloboda: aSloboda [
 |sloboda|
 cossacks := cossacks + (aNumber asNumber).
-sloboda := (registry at: aSloboda ifAbsentPut: (Sloboda withName: aSloboda withMoney: 0 withCossacks: 0 )).
+sloboda := self sloboda: aSloboda.
 sloboda addCossacks: aNumber.
-sloboda
+^ sloboda
 ]
 
 { #category : #accessing }
@@ -105,7 +106,7 @@ money := money + (aNumber asNumber)
 Sich >> addMoney: aNumber fromSloboda: aSloboda [
 |sloboda|
 money := money + (aNumber asNumber).
-sloboda := (registry at: aSloboda ifAbsentPut: (Sloboda withName: aSloboda withMoney: 0 withCossacks: 0 )).
+sloboda :=  self sloboda: aSloboda.
 sloboda addMoney: aNumber.
 sloboda
   
@@ -132,6 +133,8 @@ cossacks := 0.
 registry := Dictionary new.
 tasks := SLTasks new.
 
+tasks addTask: (SLTask new name: 'Send cossacks'; description: 'Send the specified amount of cossacks to reach this target'; target: (SLTarget cossacksWithAmount: 100)).
+
 ]
 
 { #category : #accessing }
@@ -140,6 +143,20 @@ Sich >> money [
 ]
 
 { #category : #'as yet unclassified' }
+Sich >> registerTask: aTaskName forSloboda: aSloboda [
+|sloboda task |
+task := tasks at: aTaskName.
+sloboda := self sloboda: aSloboda.
+sloboda addTask: task.
+^ sloboda
+]
+
+{ #category : #'as yet unclassified' }
 Sich >> sloboda: aSloboda [
-^ registry at: aSloboda ifAbsent: nil
+^ registry at: aSloboda ifAbsentPut: (Sloboda withName: aSloboda withMoney: 0 withCossacks: 0 )
+]
+
+{ #category : #accessing }
+Sich >> tasks [ 
+^ tasks
 ]

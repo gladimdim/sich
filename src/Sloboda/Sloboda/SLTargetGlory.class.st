@@ -6,5 +6,6 @@ Class {
 
 { #category : #initialization }
 SLTargetGlory >> initialize [ 
-name := 'Glory'
+name := 'Glory'.
+amount := 0
 ]

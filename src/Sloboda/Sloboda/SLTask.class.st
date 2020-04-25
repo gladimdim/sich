@@ -43,3 +43,8 @@ SLTask >> target [
 SLTask >> target: anObject [
 	target := anObject
 ]
+
+{ #category : #'as yet unclassified' }
+SLTask >> toActiveTask [
+^ SLActiveTask new name: name; description: description;  target: target; progress: 0
+]
