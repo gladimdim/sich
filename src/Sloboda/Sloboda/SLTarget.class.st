@@ -1,3 +1,8 @@
+"
+I represent main class for the Target.
+
+If you want to create a new type of Target then subclass me with different name.
+"
 Class {
 	#name : #SLTarget,
 	#superclass : #Object,
