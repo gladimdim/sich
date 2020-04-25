@@ -160,8 +160,3 @@ Sich >> sloboda: aSloboda [
 Sich >> tasks [ 
 ^ tasks
 ]
-
-{ #category : #accessing }
-Sich >> tasks [
-	^ tasks
-]
