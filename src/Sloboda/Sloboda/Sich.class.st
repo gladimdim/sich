@@ -55,7 +55,7 @@ Sich class >> startServer [
  teapot ifNil: [ teapot := Teapot  ].
  teapot stop.
  teapot := Teapot configure: {
- #defaultOutput -> #json. #port -> 9090. #debugMode -> true
+ #defaultOutput -> #json. #port -> 10100. #debugMode -> true
 }.
 teapot
 	GET: '/sichStats' -> sich;
@@ -66,8 +66,9 @@ teapot
 		];
 	PUT: '/sendSupport/<sloboda_id>/money/<value>' -> [:req | sich addMoney: ((req at: #value) asInteger) fromSloboda: (req at: #sloboda_id)];
 	PUT: '/sendSupport/<sloboda_id>/cossacks/<value>' -> [:req | sich addCossacks: ((req at: #value) asInteger) fromSloboda: (req at: #sloboda_id)];
-	GET: '/tasks' -> [ :req | tasks ];
-PUT: '/registerTask/<sloboda_id>/<task_name>' -> [ :req | sich registerTask: #task_name forSloboda: #sloboda_id ].
+	GET: '/tasks' -> [ :req | sich tasks ];
+   PUT: '/registerTask/<sloboda_id>/<taskName>' -> [ :req | sich registerTask: (req at: #taskName) forSloboda: (req at: #sloboda_id) ];
+   PUT: '/doTask/<sloboda_id>/<task>/<amount>' -> [ :req | sich doTask: (req at: #task) forSloboda: (req at:  #sloboda_id) withAmount: ((req at: #amount) asInteger) ].
 	
 	teapot start.
 	server := teapot.
@@ -94,7 +95,7 @@ Sich >> addCossacks: aNumber fromSloboda: aSloboda [
 cossacks := cossacks + (aNumber asNumber).
 sloboda := self sloboda: aSloboda.
 sloboda addCossacks: aNumber.
-^ sloboda
+
 ]
 
 { #category : #accessing }
@@ -117,6 +118,14 @@ Sich >> cossacks [
 	^ cossacks
 ]
 
+{ #category : #'as yet unclassified' }
+Sich >> doTask: aTaskName forSloboda: aSlobodaName withAmount: aNumber [
+|sloboda|
+sloboda := self sloboda: aSlobodaName.
+sloboda doTask: aTaskName withAmount: aNumber.
+^ sloboda
+]
+
 { #category : #accessing }
 Sich >> gtPreviewFor: aView [ 
 <gtView>
@@ -133,7 +142,7 @@ cossacks := 0.
 registry := Dictionary new.
 tasks := SLTasks new.
 
-tasks addTask: (SLTask new name: 'Send cossacks'; description: 'Send the specified amount of cossacks to reach this target'; target: (SLTarget cossacksWithAmount: 100)).
+tasks addTask: (SLTask new name: 'SendCossacks'; description: 'Send the specified amount of cossacks to reach this target'; target: (SLTarget cossacksWithAmount: 100)).
 
 ]
 
@@ -145,7 +154,7 @@ Sich >> money [
 { #category : #'as yet unclassified' }
 Sich >> registerTask: aTaskName forSloboda: aSloboda [
 |sloboda task |
-task := tasks at: aTaskName.
+task := tasks byName: aTaskName.
 sloboda := self sloboda: aSloboda.
 sloboda addTask: task.
 ^ sloboda

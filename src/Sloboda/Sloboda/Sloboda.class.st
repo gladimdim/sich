@@ -42,7 +42,7 @@ money := money + aMoney
 
 { #category : #adding }
 Sloboda >> addTask: anActiveTask [
-activeTasks add: anActiveTask
+activeTasks add: anActiveTask toActiveTask
 ]
 
 { #category : #accessing }
@@ -53,6 +53,15 @@ Sloboda >> cossacks [
 { #category : #accessing }
 Sloboda >> cossacks: anObject [
 	cossacks := anObject
+]
+
+{ #category : #'as yet unclassified' }
+Sloboda >> doTask: aTaskName withAmount: aNumber [
+|task |
+task := (activeTasks select: [ :t | t name = aTaskName ]) at: 1.
+task addProgress: aNumber.
+^ task
+
 ]
 
 { #category : #'gt-inspector-extension' }
@@ -68,7 +77,8 @@ Sloboda >> gtPreviewFor: aView [
 Sloboda >> initialize [
 money := 0.
 cossacks := 0.
-name := 'No name'
+name := 'No name'.
+activeTasks := OrderedCollection  new.
 ]
 
 { #category : #accessing }
