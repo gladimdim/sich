@@ -61,7 +61,7 @@ teapot
 	GET: '/sichStats' -> sich;
 	GET: '/slobodaStats/<id>' -> [:req | 
 		|sloboda|
-		(sich hasSloboda: (req at: #id)) ifTrue: [ sich sloboda: (req at: #id) ] ifFalse: [ TeaResponse notFound ]
+		(sich hasSloboda: (req at: #id)) ifTrue: [ sich initSloboda: (req at: #id) ] ifFalse: [ TeaResponse notFound ]
 		];
 	PUT: '/sendSupport/<sloboda_id>/money/<value>' -> [:req | sich addMoney: ((req at: #value) asInteger) fromSloboda: (req at: #sloboda_id)];
 	PUT: '/sendSupport/<sloboda_id>/cossacks/<value>' -> [:req | sich addCossacks: ((req at: #value) asInteger) fromSloboda: (req at: #sloboda_id)];
@@ -96,7 +96,7 @@ cossacks := cossacks + (aNumber asNumber)
 Sich >> addCossacks: aNumber fromSloboda: aSloboda [
 |sloboda|
 cossacks := cossacks + (aNumber asNumber).
-sloboda := self sloboda: aSloboda.
+sloboda := self initSloboda: aSloboda.
 sloboda addCossacks: aNumber.
 
 ]
@@ -110,7 +110,7 @@ money := money + (aNumber asNumber)
 Sich >> addMoney: aNumber fromSloboda: aSloboda [
 |sloboda|
 money := money + (aNumber asNumber).
-sloboda :=  self sloboda: aSloboda.
+sloboda :=  self initSloboda: aSloboda.
 sloboda addMoney: aNumber.
 sloboda
   
@@ -124,7 +124,7 @@ Sich >> cossacks [
 { #category : #'as yet unclassified' }
 Sich >> doTask: aTaskName forSloboda: aSlobodaName withAmount: aNumber [
 |sloboda task|
-sloboda := self sloboda: aSlobodaName.
+sloboda := self initSloboda: aSlobodaName.
 sloboda doTask: aTaskName withAmount: aNumber.
 ^ sloboda
 ]
@@ -141,6 +141,11 @@ Sich >> gtPreviewFor: aView [
 { #category : #testing }
 Sich >> hasSloboda: aSlobodaName [
 ^ registry anySatisfy: [ :each | each name = aSlobodaName ]
+]
+
+{ #category : #'as yet unclassified' }
+Sich >> initSloboda: aSlobodaName [
+^ registry at: aSlobodaName ifAbsentPut: (Sloboda withName: aSlobodaName withMoney: 0 withCossacks: 0 )
 ]
 
 { #category : #accessing }
@@ -163,14 +168,9 @@ Sich >> money [
 Sich >> registerTask: aTaskName forSloboda: aSloboda [
 |sloboda task |
 task := tasks byName: aTaskName.
-sloboda := self sloboda: aSloboda.
+sloboda := self initSloboda: aSloboda.
 sloboda addTask: task.
 ^ sloboda
-]
-
-{ #category : #'as yet unclassified' }
-Sich >> sloboda: aSlobodaName [
-^ registry at: aSlobodaName ifAbsentPut: (Sloboda withName: aSlobodaName withMoney: 0 withCossacks: 0 )
 ]
 
 { #category : #accessing }
