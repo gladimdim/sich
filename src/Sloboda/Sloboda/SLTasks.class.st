@@ -27,3 +27,8 @@ SLTasks >> initialize [
 tasks := OrderedCollection  new.
 
 ]
+
+{ #category : #accessing }
+SLTasks >> tasks [
+^ tasks
+]

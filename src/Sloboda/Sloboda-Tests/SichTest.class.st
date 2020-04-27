@@ -81,5 +81,5 @@ self assert: sich money equals: 0
 
 { #category : #tests }
 SichTest >> testTasks [
-self assert: sich tasks notNil equals: true
+self assert: sich tasks tasks size  equals: 2
 ]

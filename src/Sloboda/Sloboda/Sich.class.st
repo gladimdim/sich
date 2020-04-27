@@ -155,7 +155,8 @@ cossacks := 0.
 registry := Dictionary new.
 tasks := SLTasks new.
 
-tasks addTask: (SLTask new name: 'SendCossacks'; description: 'Send the specified amount of cossacks to reach this target'; target: (SLTarget cossacksWithAmount: 100)).
+tasks addTask: (SLTask new name: 'sichTasks.sendCossacks'; description: 'sichTasks.sendCossacksDescription'; target: (SLTarget cossacksWithAmount: 100)).
+tasks addTask: (SLTask new name: 'sichTasks.sendMoney'; description: 'sichTasks.sendMoneyDescription'; target: (SLTarget moneyWithAmount: 100)).
 
 ]
 
