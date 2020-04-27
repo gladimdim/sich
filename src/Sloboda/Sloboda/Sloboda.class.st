@@ -60,7 +60,7 @@ Sloboda >> doTask: aTaskName withAmount: aNumber [
 |task |
 task := (activeTasks select: [ :t | t name = aTaskName ]) at: 1.
 task addProgress: aNumber.
-^ task
+
 
 ]
 
@@ -71,6 +71,11 @@ Sloboda >> gtPreviewFor: aView [
   text: 'Sloboda name: ', name, ' has Money: ', self money asString, '  |  ', 'Cossacks: ', self cossacks asString;
   title: 'Sloboda Stats'
 
+]
+
+{ #category : #testing }
+Sloboda >> hasActiveTask: aTaskName [
+^ activeTasks anySatisfy: [ :each | each name = aTaskName ]
 ]
 
 { #category : #initialization }

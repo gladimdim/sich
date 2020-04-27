@@ -61,14 +61,17 @@ teapot
 	GET: '/sichStats' -> sich;
 	GET: '/slobodaStats/<id>' -> [:req | 
 		|sloboda|
-		sloboda := sich sloboda: (req at: #id).
-		sloboda ifNil: [TeaResponse notFound ] ifNotNil: [sloboda].
+		(sich hasSloboda: (req at: #id)) ifTrue: [ sich sloboda: (req at: #id) ] ifFalse: [ TeaResponse notFound ]
 		];
 	PUT: '/sendSupport/<sloboda_id>/money/<value>' -> [:req | sich addMoney: ((req at: #value) asInteger) fromSloboda: (req at: #sloboda_id)];
 	PUT: '/sendSupport/<sloboda_id>/cossacks/<value>' -> [:req | sich addCossacks: ((req at: #value) asInteger) fromSloboda: (req at: #sloboda_id)];
 	GET: '/tasks' -> [ :req | sich tasks ];
    PUT: '/registerTask/<sloboda_id>/<taskName>' -> [ :req | sich registerTask: (req at: #taskName) forSloboda: (req at: #sloboda_id) ];
-   PUT: '/doTask/<sloboda_id>/<task>/<amount>' -> [ :req | sich doTask: (req at: #task) forSloboda: (req at:  #sloboda_id) withAmount: ((req at: #amount) asInteger) ].
+   PUT: '/doTask/<sloboda_id>/<task>/<amount>' -> [ :req |
+	(sich hasSloboda: (req at: #sloboda_id))
+	ifTrue: ([ sich doTask: (req at: #task) forSloboda: (req at:  #sloboda_id) withAmount: ((req at: #amount) asInteger) ] on: SubscriptOutOfBounds do: [ TeaResponse notFound  ])
+	ifFalse: [ TeaResponse notFound ]
+	 ].
 	
 	teapot start.
 	server := teapot.
@@ -76,7 +79,7 @@ teapot
 
 		active := sich. 
 	^ sich
- 
+
 ]
 
 { #category : #server }
@@ -120,7 +123,7 @@ Sich >> cossacks [
 
 { #category : #'as yet unclassified' }
 Sich >> doTask: aTaskName forSloboda: aSlobodaName withAmount: aNumber [
-|sloboda|
+|sloboda task|
 sloboda := self sloboda: aSlobodaName.
 sloboda doTask: aTaskName withAmount: aNumber.
 ^ sloboda
@@ -133,6 +136,11 @@ Sich >> gtPreviewFor: aView [
   text: 'Money: ', self money asString, '  |  ', 'Cossacks: ', self cossacks asString, ' | Slobodas contributed: ', registry size asString;
   title: 'Sloboda Stats'
 
+]
+
+{ #category : #testing }
+Sich >> hasSloboda: aSlobodaName [
+^ registry anySatisfy: [ :each | each name = aSlobodaName ]
 ]
 
 { #category : #accessing }
@@ -161,8 +169,8 @@ sloboda addTask: task.
 ]
 
 { #category : #'as yet unclassified' }
-Sich >> sloboda: aSloboda [
-^ registry at: aSloboda ifAbsentPut: (Sloboda withName: aSloboda withMoney: 0 withCossacks: 0 )
+Sich >> sloboda: aSlobodaName [
+^ registry at: aSlobodaName ifAbsentPut: (Sloboda withName: aSlobodaName withMoney: 0 withCossacks: 0 )
 ]
 
 { #category : #accessing }
