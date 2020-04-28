@@ -36,7 +36,7 @@ SLTarget class >> moneyWithAmount: anAmount [
 
 { #category : #accessing }
 SLTarget class >> neoJsonMapping: mapper [
-mapper for: self do: [ :mapping | mapping mapInstVars: #(name amount) ]
+mapper for: self do: [ :mapping | mapping mapInstVars: #(type localizedNameKey amount) ]
 ]
 
 { #category : #'as yet unclassified' }
