@@ -7,13 +7,8 @@ Class {
 	#category : #Sloboda
 }
 
-{ #category : #'as yet unclassified' }
-SLTargetCossacks >> dartSourceClassName [
-^ 'TargetCossacks'
-]
-
 { #category : #initialization }
 SLTargetCossacks >> initialize [ 
-name := 'Cossacks'.
+name := 'cityProps.cossacks'.
 amount := 0.
 ]

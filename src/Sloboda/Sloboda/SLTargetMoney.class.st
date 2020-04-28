@@ -7,13 +7,8 @@ Class {
 	#category : #Sloboda
 }
 
-{ #category : #'as yet unclassified' }
-SLTargetMoney >> dartSourceClassName [
-^ 'TargetMoney'
-]
-
 { #category : #initialization }
 SLTargetMoney >> initialize [ 
-name := 'Money'.
+name := 'resources.money'.
 amount := 0.
 ]
