@@ -8,6 +8,11 @@ Class {
 	#category : #Sloboda
 }
 
+{ #category : #'as yet unclassified' }
+SLTargetGlory >> dartSourceClassName [
+^ 'TargetGlory'
+]
+
 { #category : #initialization }
 SLTargetGlory >> initialize [ 
 name := 'Glory'.

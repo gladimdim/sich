@@ -7,6 +7,11 @@ Class {
 	#category : #Sloboda
 }
 
+{ #category : #'as yet unclassified' }
+SLTargetCossacks >> dartSourceClassName [
+^ 'TargetCossacks'
+]
+
 { #category : #initialization }
 SLTargetCossacks >> initialize [ 
 name := 'Cossacks'.
