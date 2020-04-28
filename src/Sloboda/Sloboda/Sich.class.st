@@ -153,8 +153,6 @@ Sich >> initialize [
 money := 0.
 cossacks := 0.
 registry := Dictionary new.
-tasks := SLTasks new.
-
 self resetTasks
 
 ]
@@ -175,6 +173,7 @@ sloboda addTask: task.
 
 { #category : #initialization }
 Sich >> resetTasks [
+tasks := SLTasks new.
 tasks addTask: (SLTask new name: 'sichTasks.sendCossacks'; description: 'sichTasks.sendCossacksDescription'; target: (SLTarget cossacksWithAmount: 100)).
 tasks addTask: (SLTask new name: 'sichTasks.sendMoney'; description: 'sichTasks.sendMoneyDescription'; target: (SLTarget moneyWithAmount: 100)).
 ]
