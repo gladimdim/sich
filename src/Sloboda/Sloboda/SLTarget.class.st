@@ -7,8 +7,9 @@ Class {
 	#name : #SLTarget,
 	#superclass : #Object,
 	#instVars : [
-		'name',
-		'amount'
+		'type',
+		'amount',
+		'localizedNameKey'
 	],
 	#category : #Sloboda
 }
@@ -54,11 +55,21 @@ SLTarget >> amount: anObject [
 ]
 
 { #category : #accessing }
-SLTarget >> name [
-	^ name
+SLTarget >> localizedNameKey [
+	^ localizedNameKey
 ]
 
 { #category : #accessing }
-SLTarget >> name: anObject [
-	name := anObject
+SLTarget >> localizedNameKey: anObject [
+	localizedNameKey := anObject
+]
+
+{ #category : #accessing }
+SLTarget >> type [
+	^ type
+]
+
+{ #category : #accessing }
+SLTarget >> type: anObject [
+	type := anObject
 ]
