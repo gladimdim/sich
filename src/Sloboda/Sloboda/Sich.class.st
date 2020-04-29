@@ -145,7 +145,7 @@ Sich >> hasSloboda: aSlobodaName [
 
 { #category : #'as yet unclassified' }
 Sich >> initSloboda: aSlobodaName [
-^ registry at: aSlobodaName ifAbsentPut: (Sloboda withName: aSlobodaName withMoney: 0 withCossacks: 0 )
+^ registry at: aSlobodaName ifAbsentPut: (SLSloboda withName: aSlobodaName withMoney: 0 withCossacks: 0 )
 ]
 
 { #category : #accessing }

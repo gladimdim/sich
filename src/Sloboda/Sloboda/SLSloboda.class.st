@@ -4,7 +4,7 @@ I represent a Sloboda or 'city'.
 My main responsibilities are: tracking amount of cossacks money sent to the sich by the player.
 "
 Class {
-	#name : #Sloboda,
+	#name : #SLSloboda,
 	#superclass : #Object,
 	#instVars : [
 		'name',
@@ -16,12 +16,12 @@ Class {
 }
 
 { #category : #accessing }
-Sloboda class >> neoJsonMapping: mapper [
+SLSloboda class >> neoJsonMapping: mapper [
 mapper for: self do: [ :mapping | mapping mapInstVars: #(cossacks money name activeTasks) ]
 ]
 
 { #category : #'as yet unclassified' }
-Sloboda class >> withName: aName withMoney: aMoney withCossacks: aCossacks [
+SLSloboda class >> withName: aName withMoney: aMoney withCossacks: aCossacks [
 |c|
 c := self new.
 c name: aName.
@@ -30,33 +30,38 @@ c cossacks: aCossacks.
 ^c
 ]
 
+{ #category : #accessing }
+SLSloboda >> activeTasks [
+	^ activeTasks
+]
+
 { #category : #adding }
-Sloboda >> addCossacks: aCossacks [
+SLSloboda >> addCossacks: aCossacks [
 cossacks := cossacks + aCossacks
 ]
 
 { #category : #adding }
-Sloboda >> addMoney: aMoney [
+SLSloboda >> addMoney: aMoney [
 money := money + aMoney
 ]
 
 { #category : #adding }
-Sloboda >> addTask: anActiveTask [
+SLSloboda >> addTask: anActiveTask [
 activeTasks add: anActiveTask toActiveTask
 ]
 
 { #category : #accessing }
-Sloboda >> cossacks [
+SLSloboda >> cossacks [
 	^ cossacks
 ]
 
 { #category : #accessing }
-Sloboda >> cossacks: anObject [
+SLSloboda >> cossacks: anObject [
 	cossacks := anObject
 ]
 
 { #category : #'as yet unclassified' }
-Sloboda >> doTask: aTaskName withAmount: aNumber [
+SLSloboda >> doTask: aTaskName withAmount: aNumber [
 |task |
 task := (activeTasks select: [ :t | t name = aTaskName ]) at: 1.
 task addProgress: aNumber.
@@ -65,7 +70,7 @@ task addProgress: aNumber.
 ]
 
 { #category : #'gt-inspector-extension' }
-Sloboda >> gtPreviewFor: aView [ 
+SLSloboda >> gtPreviewFor: aView [ 
 <gtView>
 ^ aView textEditor
   text: 'Sloboda name: ', name, ' has Money: ', self money asString, '  |  ', 'Cossacks: ', self cossacks asString;
@@ -74,12 +79,12 @@ Sloboda >> gtPreviewFor: aView [
 ]
 
 { #category : #testing }
-Sloboda >> hasActiveTask: aTaskName [
+SLSloboda >> hasActiveTask: aTaskName [
 ^ activeTasks anySatisfy: [ :each | each name = aTaskName ]
 ]
 
 { #category : #initialization }
-Sloboda >> initialize [
+SLSloboda >> initialize [
 money := 0.
 cossacks := 0.
 name := 'No name'.
@@ -87,21 +92,21 @@ activeTasks := OrderedCollection  new.
 ]
 
 { #category : #accessing }
-Sloboda >> money [
+SLSloboda >> money [
 	^ money
 ]
 
 { #category : #accessing }
-Sloboda >> money: anObject [
+SLSloboda >> money: anObject [
 	money := anObject
 ]
 
 { #category : #accessing }
-Sloboda >> name [
+SLSloboda >> name [
 	^ name
 ]
 
 { #category : #accessing }
-Sloboda >> name: anObject [
+SLSloboda >> name: anObject [
 	name := anObject
 ]

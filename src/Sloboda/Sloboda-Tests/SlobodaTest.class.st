@@ -13,7 +13,7 @@ Class {
 { #category : #running }
 SlobodaTest >> setUp [
 	"Hooks that subclasses may override to define the fixture of test."
-sloboda := Sloboda new.
+sloboda := SLSloboda new.
 ]
 
 { #category : #tests }
