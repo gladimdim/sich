@@ -47,7 +47,8 @@ money := money + aMoney
 
 { #category : #adding }
 SLSloboda >> addTask: anActiveTask [
-activeTasks add: anActiveTask toActiveTask
+(self hasActiveTask: anActiveTask name) ifFalse: [  
+activeTasks add: anActiveTask toActiveTask]
 ]
 
 { #category : #accessing }
