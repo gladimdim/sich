@@ -125,7 +125,7 @@ Sich >> cossacks [
 Sich >> doTask: aTaskName forSloboda: aSlobodaName withAmount: aNumber [
 |sloboda task|
 sloboda := self initSloboda: aSlobodaName.
-sloboda doTask: aTaskName withAmount: aNumber.
+task := sloboda doTask: aTaskName withAmount: aNumber.
 ^ sloboda
 ]
 

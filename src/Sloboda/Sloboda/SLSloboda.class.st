@@ -10,14 +10,15 @@ Class {
 		'name',
 		'money',
 		'cossacks',
-		'activeTasks'
+		'activeTasks',
+		'completedTaskCount'
 	],
 	#category : #Sloboda
 }
 
 { #category : #accessing }
 SLSloboda class >> neoJsonMapping: mapper [
-mapper for: self do: [ :mapping | mapping mapInstVars: #(cossacks money name activeTasks) ]
+mapper for: self do: [ :mapping | mapping mapInstVars: #(cossacks money name activeTasks completedTaskCount ) ]
 ]
 
 { #category : #'as yet unclassified' }
@@ -51,6 +52,21 @@ SLSloboda >> addTask: anActiveTask [
 activeTasks add: anActiveTask toActiveTask]
 ]
 
+{ #category : #'as yet unclassified' }
+SLSloboda >> completeTask [
+completedTaskCount := completedTaskCount + 1
+]
+
+{ #category : #accessing }
+SLSloboda >> completedTaskCount [
+	^ completedTaskCount
+]
+
+{ #category : #accessing }
+SLSloboda >> completedTaskCount: anObject [
+	completedTaskCount := anObject
+]
+
 { #category : #accessing }
 SLSloboda >> cossacks [
 	^ cossacks
@@ -61,13 +77,15 @@ SLSloboda >> cossacks: anObject [
 	cossacks := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 SLSloboda >> doTask: aTaskName withAmount: aNumber [
-|task |
-task := (activeTasks select: [ :t | t name = aTaskName ]) at: 1.
-task addProgress: aNumber.
-
-
+	| task |
+	task := (activeTasks select: [ :t | t name = aTaskName ]) at: 1.
+	task addProgress: aNumber.
+	task progress >= task target amount
+		ifFalse: [ ^ self ].
+	activeTasks remove: task.
+	self completeTask
 ]
 
 { #category : #'gt-inspector-extension' }
@@ -90,6 +108,7 @@ money := 0.
 cossacks := 0.
 name := 'No name'.
 activeTasks := OrderedCollection  new.
+completedTaskCount := 0.
 ]
 
 { #category : #accessing }
