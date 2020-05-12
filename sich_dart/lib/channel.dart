@@ -1,3 +1,6 @@
+import 'package:sich_dart/controllers/sich_controller.dart';
+import 'package:sich_dart/controllers/sloboda_controller.dart';
+
 import 'sich_dart.dart';
 
 /// This type initializes an application.
@@ -33,9 +36,13 @@ class SichDartChannel extends ApplicationChannel {
       return Response.ok({"key": "value123"});
     });
 
-    router.route("/sichStats").linkFunction((request) async {
-      return Response.ok("dima");
-    });
+    router.route("/sich").link(() => SichController());
+
+    router.route("/sich/slobodas/[:name]").link(() => SlobodaController());
+
+    router
+        .route('/sich/slobodas/:name/:action/:amount')
+        .link(() => SlobodaController());
 
     return router;
   }
