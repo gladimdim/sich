@@ -71,9 +71,11 @@ class SlobodaController extends ResourceController {
 
     if (action == 'sendMoney') {
       sloboda.money += amount;
+      sich.money += amount;
     }
     if (action == 'sendCossacks') {
       sloboda.cossacks += amount;
+      sich.cossacks += amount;
     }
     return Response.ok(sloboda.toJson());
   }

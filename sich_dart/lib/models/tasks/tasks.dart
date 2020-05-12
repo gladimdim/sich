@@ -11,7 +11,7 @@ class Task {
     return {
       'target': target.toJson(),
       'localizedKey': localizedKey,
-      'localizedKeyDescription': localizedDescriptionKey
+      'localizedDescriptionKey': localizedDescriptionKey
     };
   }
 
@@ -26,6 +26,7 @@ class Task {
       target: TaskTarget(
         amount: 100,
         localizedKey: 'resources.money',
+        type: 'Money',
       ),
     );
   }
@@ -37,6 +38,7 @@ class Task {
       target: TaskTarget(
         amount: 100,
         localizedKey: 'cityProps.cossacks',
+        type: 'Cossacks',
       ),
     );
   }
