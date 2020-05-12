@@ -19,4 +19,14 @@ class Sich {
       'tasks': tasks.map((e) => e.toJson()).toList(),
     };
   }
+
+  Sloboda findSlobodaByName(String name) {
+    return slobodas.firstWhere((element) => element.name == name,
+        orElse: () => null);
+  }
+
+  Task findTaskByName(String taskName) {
+    return tasks.firstWhere((element) => element.localizedKey == taskName,
+        orElse: () => null);
+  }
 }

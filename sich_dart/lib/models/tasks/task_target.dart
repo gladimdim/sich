@@ -1,8 +1,7 @@
 class TaskTarget {
+  TaskTarget({this.localizedKey, this.amount});
   final String localizedKey;
   final int amount;
-
-  TaskTarget({this.localizedKey, this.amount});
 
   Map<String, dynamic> toJson() {
     return {

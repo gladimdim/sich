@@ -39,7 +39,12 @@ class SichDartChannel extends ApplicationChannel {
     router.route("/sich").link(() => SichController());
 
     router.route("/sich/slobodas/[:name]").link(() => SlobodaController());
-
+    router
+        .route('/sich/slobodas/:name/registerTask/:taskName')
+        .link(() => SlobodaController());
+    router
+        .route('/sich/slobodas/:name/doTask/:taskName/:amount')
+        .link(() => SlobodaController());
     router
         .route('/sich/slobodas/:name/:action/:amount')
         .link(() => SlobodaController());

@@ -1,5 +1,6 @@
 import 'package:sich_dart/models/Sich.dart';
 import 'package:sich_dart/models/sloboda.dart';
+import 'package:sich_dart/models/tasks/tasks.dart';
 import 'package:sich_dart/sich_dart.dart';
 
 class SlobodaController extends ResourceController {
@@ -21,9 +22,41 @@ class SlobodaController extends ResourceController {
     }
   }
 
-  Sloboda _findSlobodaByName(String name) {
-    return sich.slobodas
-        .firstWhere((element) => element.name == name, orElse: () => null);
+  @Operation.put('name', 'taskName')
+  Future<Response> slobodaRegisterTask(
+    @Bind.path('name') String name,
+    @Bind.path('taskName') String taskName,
+  ) async {
+    final Sloboda sloboda = sich.findSlobodaByName(name);
+    final Task task = sich.findTaskByName(taskName);
+    if (sloboda == null || task == null) {
+      return Response.notFound();
+    }
+
+    sloboda.addTask(task);
+
+    return Response.ok(sloboda);
+  }
+
+  @Operation.post('name', 'taskName', 'amount')
+  Future<Response> doTaskForSloboda(
+    @Bind.path('name') String name,
+    @Bind.path('taskName') String taskName,
+    @Bind.path('amount') int amount,
+  ) async {
+    final Sloboda sloboda = sich.findSlobodaByName(name);
+    final Task task = sich.findTaskByName(taskName);
+    if (sloboda == null || task == null) {
+      return Response.notFound();
+    }
+    final ActiveTask activeTask = sloboda.findActiveTaskByName(taskName);
+    if (activeTask == null) {
+      return Response.notFound();
+    }
+
+    activeTask.progress += amount;
+
+    return Response.ok(sloboda);
   }
 
   @Operation.put('name', 'action', 'amount')
@@ -31,7 +64,7 @@ class SlobodaController extends ResourceController {
       @Bind.path('name') String name,
       @Bind.path('action') String action,
       @Bind.path('amount') int amount) async {
-    final Sloboda sloboda = _findSlobodaByName(name);
+    final Sloboda sloboda = sich.findSlobodaByName(name);
     if (sloboda == null) {
       return Response.notFound();
     }
