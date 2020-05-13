@@ -10,6 +10,6 @@ Class {
 
 { #category : #initialization }
 SLTargetGlory >> initialize [ 
-name := 'Glory'.
+localizedKey := 'Glory'.
 amount := 0
 ]

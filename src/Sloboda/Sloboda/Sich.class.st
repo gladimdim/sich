@@ -38,7 +38,7 @@ Metacello new
 
 { #category : #accessing }
 Sich class >> neoJsonMapping: mapper [
-mapper for: self do: [ :mapping | mapping mapInstVars: #(cossacks money) ]
+mapper for: self do: [ :mapping | mapping mapInstVars: #(cossacks money tasks registry) ]
 ]
 
 { #category : #accessing }
@@ -55,19 +55,18 @@ Sich class >> startServer [
  teapot ifNil: [ teapot := Teapot  ].
  teapot stop.
  teapot := Teapot configure: {
- #defaultOutput -> #json. #port -> 10100. #debugMode -> true
+ #defaultOutput -> #json. #port -> 9090. #debugMode -> true
 }.
 teapot
-	GET: '/sichStats' -> sich;
-	GET: '/slobodaStats/<id>' -> [:req | 
-		|sloboda|
-		(sich hasSloboda: (req at: #id)) ifTrue: [ sich initSloboda: (req at: #id) ] ifFalse: [ TeaResponse notFound ]
+	GET: '/sich' -> sich;
+	GET: '/sich/slobodas/<name>' -> [:req | 
+		 sich initSloboda: (req at: #name)
 		];
-	PUT: '/sendSupport/<sloboda_id>/money/<value>' -> [:req | sich addMoney: ((req at: #value) asInteger) fromSloboda: (req at: #sloboda_id)];
-	PUT: '/sendSupport/<sloboda_id>/cossacks/<value>' -> [:req | sich addCossacks: ((req at: #value) asInteger) fromSloboda: (req at: #sloboda_id)];
+	PUT: '/sich/slobodas/<sloboda_id>/sendMoney/<value>' -> [:req | sich addMoney: ((req at: #value) asInteger) fromSloboda: (req at: #sloboda_id)];
+	PUT: '/sich/slobodas/<sloboda_id>/sendCossacks/<value>' -> [:req | sich addCossacks: ((req at: #value) asInteger) fromSloboda: (req at: #sloboda_id)];
 	GET: '/tasks' -> [ :req | sich tasks ];
-   PUT: '/registerTask/<sloboda_id>/<taskName>' -> [ :req | sich registerTask: (req at: #taskName) forSloboda: (req at: #sloboda_id) ];
-   PUT: '/doTask/<sloboda_id>/<task>/<amount>' -> [ :req |
+   PUT: '/sich/slobodas/<sloboda_id>/registerTask/<taskName>' -> [ :req | sich registerTask: (req at: #taskName) forSloboda: (req at: #sloboda_id) ];
+   POST: '/sich/slobodas/<sloboda_id>/doTask/<task>/<amount>' -> [ :req |
 	(sich hasSloboda: (req at: #sloboda_id))
 	ifTrue: ([ sich doTask: (req at: #task) forSloboda: (req at:  #sloboda_id) withAmount: ((req at: #amount) asInteger) ] on: SubscriptOutOfBounds do: [ TeaResponse notFound  ])
 	ifFalse: [ TeaResponse notFound ]
@@ -165,7 +164,7 @@ Sich >> money [
 { #category : #'as yet unclassified' }
 Sich >> registerTask: aTaskName forSloboda: aSloboda [
 |sloboda task |
-task := tasks byName: aTaskName.
+task := tasks byLocalizedKey: aTaskName.
 sloboda := self initSloboda: aSloboda.
 sloboda addTask: task.
 ^ sloboda
@@ -174,8 +173,8 @@ sloboda addTask: task.
 { #category : #initialization }
 Sich >> resetTasks [
 tasks := SLTasks new.
-tasks addTask: (SLTask new name: 'sichTasks.sendCossacks'; description: 'sichTasks.sendCossacksDescription'; target: (SLTarget cossacksWithAmount: 100)).
-tasks addTask: (SLTask new name: 'sichTasks.sendMoney'; description: 'sichTasks.sendMoneyDescription'; target: (SLTarget moneyWithAmount: 100)).
+tasks addTask: (SLTask new localizedKey: 'sichTasks.sendCossacks'; localizedDescriptionKey: 'sichTasks.sendCossacksDescription'; target: (SLTarget cossacksWithAmount: 100)).
+tasks addTask: (SLTask new localizedKey: 'sichTasks.sendMoney'; localizedDescriptionKey: 'sichTasks.sendMoneyDescription'; target: (SLTarget moneyWithAmount: 100)).
 ]
 
 { #category : #accessing }

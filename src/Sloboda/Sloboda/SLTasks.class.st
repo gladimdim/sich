@@ -18,8 +18,8 @@ tasks add: aTask
 ]
 
 { #category : #'as yet unclassified' }
-SLTasks >> byName: aName [
-^ (tasks select: [ :each | each name = aName ]) at: 1
+SLTasks >> byLocalizedKey: aKey [
+^ (tasks select: [ :each | each localizedKey = aKey ]) at: 1
 ]
 
 { #category : #initialization }

@@ -9,7 +9,7 @@ Class {
 
 { #category : #initialization }
 SLTargetMoney >> initialize [ 
-localizedNameKey  := 'resources.money'.
+localizedKey  := 'resources.money'.
 type := 'Money'.
 amount := 0.
 ]

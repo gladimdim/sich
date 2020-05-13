@@ -48,7 +48,7 @@ money := money + aMoney
 
 { #category : #adding }
 SLSloboda >> addTask: anActiveTask [
-(self hasActiveTask: anActiveTask name) ifFalse: [  
+(self hasActiveTask: anActiveTask localizedKey) ifFalse: [  
 activeTasks add: anActiveTask toActiveTask]
 ]
 
@@ -80,7 +80,7 @@ SLSloboda >> cossacks: anObject [
 { #category : #accessing }
 SLSloboda >> doTask: aTaskName withAmount: aNumber [
 	| task |
-	task := (activeTasks select: [ :t | t name = aTaskName ]) at: 1.
+	task := (activeTasks select: [ :t | t localizedKey = aTaskName ]) at: 1.
 	task addProgress: aNumber.
 	task progress >= task target amount
 		ifFalse: [ ^ self ].
@@ -99,7 +99,7 @@ SLSloboda >> gtPreviewFor: aView [
 
 { #category : #testing }
 SLSloboda >> hasActiveTask: aTaskName [
-^ activeTasks anySatisfy: [ :each | each name = aTaskName ]
+^ activeTasks anySatisfy: [ :each | each localizedKey = aTaskName ]
 ]
 
 { #category : #initialization }

@@ -9,7 +9,7 @@ Class {
 	#instVars : [
 		'type',
 		'amount',
-		'localizedNameKey'
+		'localizedKey'
 	],
 	#category : #Sloboda
 }
@@ -36,7 +36,7 @@ SLTarget class >> moneyWithAmount: anAmount [
 
 { #category : #accessing }
 SLTarget class >> neoJsonMapping: mapper [
-mapper for: self do: [ :mapping | mapping mapInstVars: #(type localizedNameKey amount) ]
+mapper for: self do: [ :mapping | mapping mapInstVars: #(type localizedKey amount) ]
 ]
 
 { #category : #'as yet unclassified' }
@@ -55,13 +55,13 @@ SLTarget >> amount: anObject [
 ]
 
 { #category : #accessing }
-SLTarget >> localizedNameKey [
-	^ localizedNameKey
+SLTarget >> localizedKey [
+	^ localizedKey
 ]
 
 { #category : #accessing }
-SLTarget >> localizedNameKey: anObject [
-	localizedNameKey := anObject
+SLTarget >> localizedKey: anObject [
+	localizedKey := anObject
 ]
 
 { #category : #accessing }

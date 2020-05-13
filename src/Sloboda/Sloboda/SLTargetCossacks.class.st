@@ -9,7 +9,7 @@ Class {
 
 { #category : #initialization }
 SLTargetCossacks >> initialize [ 
-localizedNameKey := 'cityProps.cossacks'.
+localizedKey := 'cityProps.cossacks'.
 type := 'Cossacks'.
 amount := 0.
 ]

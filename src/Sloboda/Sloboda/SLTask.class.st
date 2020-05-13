@@ -7,36 +7,36 @@ Class {
 	#name : #SLTask,
 	#superclass : #Object,
 	#instVars : [
-		'name',
-		'description',
-		'target'
+		'target',
+		'localizedKey',
+		'localizedDescriptionKey'
 	],
 	#category : #Sloboda
 }
 
 { #category : #accessing }
 SLTask class >> neoJsonMapping: mapper [
-mapper for: self do: [ :mapping | mapping mapInstVars: #(name description target) ]
+mapper for: self do: [ :mapping | mapping mapInstVars: #(localizedKey localizedDescriptionKey target) ]
 ]
 
 { #category : #accessing }
-SLTask >> description [
-	^ description
+SLTask >> localizedDescriptionKey [
+	^ localizedDescriptionKey
 ]
 
 { #category : #accessing }
-SLTask >> description: anObject [
-	description := anObject
+SLTask >> localizedDescriptionKey: anObject [
+	localizedDescriptionKey := anObject
 ]
 
 { #category : #accessing }
-SLTask >> name [
-	^ name
+SLTask >> localizedKey [
+	^ localizedKey
 ]
 
 { #category : #accessing }
-SLTask >> name: anObject [
-	name := anObject
+SLTask >> localizedKey: anObject [
+	localizedKey := anObject
 ]
 
 { #category : #accessing }
@@ -51,5 +51,5 @@ SLTask >> target: anObject [
 
 { #category : #'as yet unclassified' }
 SLTask >> toActiveTask [
-^ SLActiveTask new name: name; description: description;  target: target; progress: 0
+^ SLActiveTask new localizedKey: localizedKey; localizedDescriptionKey: localizedDescriptionKey;  target: target; progress: 0
 ]

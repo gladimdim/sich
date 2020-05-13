@@ -9,7 +9,7 @@ Class {
 
 { #category : #accessing }
 SLActiveTask class >> neoJsonMapping: mapper [
-mapper for: self do: [ :mapping | mapping mapInstVars: #(name description target progress) ]
+mapper for: self do: [ :mapping | mapping mapInstVars: #(localizedKey localizedDescriptionKey target progress) ]
 ]
 
 { #category : #adding }
