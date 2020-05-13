@@ -4,7 +4,8 @@ import 'package:sich_dart/models/tasks/tasks.dart';
 import 'package:sich_dart/sich_dart.dart';
 
 class SlobodaController extends ResourceController {
-  final Sich sich = Sich.instance;
+  final Sich sich;
+  SlobodaController({this.sich});
 
   @Operation.get()
   Future<Response> getAllSlobodas() async {
@@ -27,12 +28,8 @@ class SlobodaController extends ResourceController {
     @Bind.path('name') String name,
     @Bind.path('taskName') String taskName,
   ) async {
-    final Sloboda sloboda = sich.findSlobodaByName(name);
+    final Sloboda sloboda = sich.findSlobodaByName(name) ?? Sloboda(name: name);
     final Task task = sich.findTaskByName(taskName);
-    if (sloboda == null || task == null) {
-      return Response.notFound();
-    }
-
     sloboda.addTask(task);
 
     return Response.ok(sloboda);
@@ -64,9 +61,10 @@ class SlobodaController extends ResourceController {
       @Bind.path('name') String name,
       @Bind.path('action') String action,
       @Bind.path('amount') int amount) async {
-    final Sloboda sloboda = sich.findSlobodaByName(name);
+    Sloboda sloboda = sich.findSlobodaByName(name);
     if (sloboda == null) {
-      return Response.notFound();
+      sloboda = Sloboda(name: name);
+      sich.slobodas.add(sloboda);
     }
 
     if (action == 'sendMoney') {
