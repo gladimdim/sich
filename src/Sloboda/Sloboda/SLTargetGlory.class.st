@@ -13,3 +13,8 @@ SLTargetGlory >> initialize [
 localizedKey := 'Glory'.
 amount := 0
 ]
+
+{ #category : #'as yet unclassified' }
+SLTargetGlory >> toDartFromJsonFactoryClassName [ 
+^ ((super class) superclass new) dartSourceClassName 
+]
