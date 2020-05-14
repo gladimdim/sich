@@ -17,7 +17,7 @@ Class {
 
 { #category : #accessing }
 SLTask class >> neoJsonMapping: mapper [
-mapper for: self do: [ :mapping | mapping mapInstVars: #(localizedKey localizedDescriptionKey target) ]
+mapper for: self do: [ :mapping | mapping mapInstVars: #(localizedKey localizedDescriptionKey target iconPath) ]
 ]
 
 { #category : #accessing }
@@ -62,5 +62,5 @@ SLTask >> target: anObject [
 
 { #category : #'as yet unclassified' }
 SLTask >> toActiveTask [
-^ SLActiveTask new localizedKey: localizedKey; localizedDescriptionKey: localizedDescriptionKey;  target: target; progress: 0
+^ SLActiveTask new localizedKey: localizedKey; localizedDescriptionKey: localizedDescriptionKey;  target: target; progress: 0; iconPath: iconPath
 ]
