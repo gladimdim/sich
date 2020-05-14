@@ -9,7 +9,8 @@ Class {
 	#instVars : [
 		'target',
 		'localizedKey',
-		'localizedDescriptionKey'
+		'localizedDescriptionKey',
+		'iconPath'
 	],
 	#category : #Sloboda
 }
@@ -17,6 +18,16 @@ Class {
 { #category : #accessing }
 SLTask class >> neoJsonMapping: mapper [
 mapper for: self do: [ :mapping | mapping mapInstVars: #(localizedKey localizedDescriptionKey target) ]
+]
+
+{ #category : #accessing }
+SLTask >> iconPath [
+	^ iconPath
+]
+
+{ #category : #accessing }
+SLTask >> iconPath: anObject [
+	iconPath := anObject
 ]
 
 { #category : #accessing }

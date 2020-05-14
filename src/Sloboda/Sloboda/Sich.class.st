@@ -173,8 +173,8 @@ sloboda addTask: task.
 { #category : #initialization }
 Sich >> resetTasks [
 tasks := SLTasks new.
-tasks addTask: (SLTask new localizedKey: 'sichTasks.sendCossacks'; localizedDescriptionKey: 'sichTasks.sendCossacksDescription'; target: (SLTarget cossacksWithAmount: 100)).
-tasks addTask: (SLTask new localizedKey: 'sichTasks.sendMoney'; localizedDescriptionKey: 'sichTasks.sendMoneyDescription'; target: (SLTarget moneyWithAmount: 100)).
+tasks addTask: (SLTask new localizedKey: 'sichTasks.sendCossacks'; localizedDescriptionKey: 'sichTasks.sendCossacksDescription'; target: (SLTarget cossacksWithAmount: 100); iconPath: 'images/city_props/cossacks_64.png').
+tasks addTask: (SLTask new localizedKey: 'sichTasks.sendMoney'; localizedDescriptionKey: 'sichTasks.sendMoneyDescription'; target: (SLTarget moneyWithAmount: 100); iconPath: 'images/resources/food_64.png').
 ]
 
 { #category : #accessing }
