@@ -80,7 +80,7 @@ self assert: sich money equals: 0
 ]
 
 { #category : #tests }
-SichTest >> testSaveSloboda [
+SichTest >> testSaveSlobodaWithContent [
 | key content|
 key := '123'.
 content := '{some: "json"}'.
