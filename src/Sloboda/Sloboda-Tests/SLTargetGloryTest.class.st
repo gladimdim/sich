@@ -11,5 +11,5 @@ Class {
 SLTargetGloryTest >> testInitialize [
 |target|
 target := SLTargetGlory  new.
-self assert: target name equals: 'Glory'
+self assert: target type equals: 'Glory'
 ]

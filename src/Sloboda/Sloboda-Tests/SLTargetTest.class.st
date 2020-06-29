@@ -15,8 +15,8 @@ self assert: target amount equals: 100
 ]
 
 { #category : #tests }
-SLTargetTest >> testName [
+SLTargetTest >> testType [
 |target|
-target := SLTarget new name: 'Money'.
-self assert: target name equals: 'Money'
+target := SLTarget new type: 'Money'.
+self assert: target type equals: 'Money'
 ]

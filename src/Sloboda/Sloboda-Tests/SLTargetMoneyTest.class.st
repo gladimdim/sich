@@ -11,12 +11,12 @@ Class {
 SLTargetMoneyTest >> testDefaultName [
 |target|
 target := SLTargetMoney  new.
-self assert: target name equals: 'Money'
+self assert: target type equals: 'Money'
 ]
 
 { #category : #tests }
 SLTargetMoneyTest >> testInitialize [
 |target|
 target := SLTargetMoney  new.
-self assert: target name equals: 'Money'
+self assert: target type equals: 'Money'
 ]

@@ -11,5 +11,5 @@ Class {
 SLTargetCossacksTest >> testInitialize [
 |target|
 target := SLTargetCossacks new.
-self assert: target name equals: 'Cossacks'
+self assert: target type equals: 'Cossacks'
 ]

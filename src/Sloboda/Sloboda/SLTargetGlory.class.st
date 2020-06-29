@@ -11,7 +11,8 @@ Class {
 { #category : #initialization }
 SLTargetGlory >> initialize [ 
 localizedKey := 'Glory'.
-amount := 0
+amount := 0.
+type := 'Glory'
 ]
 
 { #category : #'as yet unclassified' }

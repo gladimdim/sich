@@ -80,6 +80,16 @@ self assert: sich money equals: 0
 ]
 
 { #category : #tests }
+SichTest >> testSaveSloboda [
+| key content|
+key := '123'.
+content := '{some: "json"}'.
+sich saveSloboda: key withContent: content.
+self assert: (sich getSloboda: key) equals: content
+
+]
+
+{ #category : #tests }
 SichTest >> testTasks [
 self assert: sich tasks tasks size  equals: 2
 ]

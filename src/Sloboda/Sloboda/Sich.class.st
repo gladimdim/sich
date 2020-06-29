@@ -8,7 +8,8 @@ Class {
 		'cossacks',
 		'money',
 		'registry',
-		'tasks'
+		'tasks',
+		'states'
 	],
 	#classInstVars : [
 		'server',
@@ -70,8 +71,9 @@ teapot
 	(sich hasSloboda: (req at: #sloboda_id))
 	ifTrue: ([ sich doTask: (req at: #task) forSloboda: (req at:  #sloboda_id) withAmount: ((req at: #amount) asInteger) ] on: SubscriptOutOfBounds do: [ TeaResponse notFound  ])
 	ifFalse: [ TeaResponse notFound ]
-	 ].
-	
+	 ];
+   POST: '/sich/db/<key>' -> [ :req | sich saveSloboda: (req at: #key) withContent: (req entity contents) ];
+   GET: '/sich/db/<key>' -> [ :req | sich getSloboda: (req at: #key) ].
 	teapot start.
 	server := teapot.
 	
@@ -128,6 +130,11 @@ task := sloboda doTask: aTaskName withAmount: aNumber.
 ^ sloboda
 ]
 
+{ #category : #'as yet unclassified' }
+Sich >> getSloboda: aKey [
+^ states at: aKey
+]
+
 { #category : #accessing }
 Sich >> gtPreviewFor: aView [ 
 <gtView>
@@ -152,6 +159,7 @@ Sich >> initialize [
 money := 0.
 cossacks := 0.
 registry := Dictionary new.
+states := Dictionary new.
 self resetTasks
 
 ]
@@ -175,6 +183,11 @@ Sich >> resetTasks [
 tasks := SLTasks new.
 tasks addTask: (SLTask new localizedKey: 'sichTasks.sendCossacks'; localizedDescriptionKey: 'sichTasks.sendCossacksDescription'; target: (SLTarget cossacksWithAmount: 100); iconPath: 'images/city_props/cossack_64.png').
 tasks addTask: (SLTask new localizedKey: 'sichTasks.sendMoney'; localizedDescriptionKey: 'sichTasks.sendMoneyDescription'; target: (SLTarget moneyWithAmount: 100); iconPath: 'images/resources/food_64.png').
+]
+
+{ #category : #'as yet unclassified' }
+Sich >> saveSloboda: aKey withContent: aContent [
+states at: aKey put: aContent
 ]
 
 { #category : #accessing }
