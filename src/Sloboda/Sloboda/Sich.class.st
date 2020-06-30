@@ -72,7 +72,7 @@ teapot
 	ifTrue: ([ sich doTask: (req at: #task) forSloboda: (req at:  #sloboda_id) withAmount: ((req at: #amount) asInteger) ] on: SubscriptOutOfBounds do: [ TeaResponse notFound  ])
 	ifFalse: [ TeaResponse notFound ]
 	 ];
-   POST: '/sich/db/<key>' -> [ :req | sich saveSloboda: (req at: #key) withContent: (req entity contents) ];
+   POST: '/sich/db/<key>' -> [ :req | sich saveSloboda: (req at: #key) withContent: (NeoJSONReader fromString: (req entity contents)) ];
    GET: '/sich/db/<key>' -> [ :req | sich getSloboda: (req at: #key) ]; output: #json.
 	teapot start.
 	server := teapot.
