@@ -73,12 +73,10 @@ teapot
 	ifFalse: [ TeaResponse notFound ]
 	 ];
    POST: '/sich/db/<key>' -> [ :req | sich saveSloboda: (req at: #key) withContent: (req entity contents) ];
-   GET: '/sich/db/<key>' -> [ :req | sich getSloboda: (req at: #key) ].
+   GET: '/sich/db/<key>' -> [ :req | sich getSloboda: (req at: #key) ]; output: #json.
 	teapot start.
 	server := teapot.
-	
-
-		active := sich. 
+		active := sich.
 	^ sich
 
 ]
@@ -132,7 +130,7 @@ task := sloboda doTask: aTaskName withAmount: aNumber.
 
 { #category : #'as yet unclassified' }
 Sich >> getSloboda: aKey [
-^ states at: aKey
+^ states at: aKey ifAbsent: nil
 ]
 
 { #category : #accessing }
