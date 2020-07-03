@@ -72,8 +72,9 @@ teapot
 	ifTrue: ([ sich doTask: (req at: #task) forSloboda: (req at:  #sloboda_id) withAmount: ((req at: #amount) asInteger) ] on: SubscriptOutOfBounds do: [ TeaResponse notFound  ])
 	ifFalse: [ TeaResponse notFound ]
 	 ];
-   POST: '/sich/db/<key>' -> [ :req | sich saveSloboda: (req at: #key) withContent: (NeoJSONReader fromString: (req entity contents)) ];
-   GET: '/sich/db/<key>' -> [ :req | sich getSloboda: (req at: #key) ]; output: #json.
+	 POST: '/sich/db/states/<key>' -> [ :req | sich postStateForRequest: req ]; output: #json;
+   GET: '/sich/db/states/<key>' -> [ :req | sich getStateForRequest: req ]; output: #json.
+	
 	teapot start.
 	server := teapot.
 		active := sich.
@@ -133,6 +134,16 @@ Sich >> getSloboda: aKey [
 ^ states at: aKey ifAbsent: nil
 ]
 
+{ #category : #'as yet unclassified' }
+Sich >> getStateForRequest: aRequest [
+|key stream working|
+working := FileSystem disk workingDirectory.
+key := aRequest at: #key.
+(working / key) exists ifTrue: [ stream := (working / key) readStream .
+^ (NeoJSONReader fromString: stream contents). ] ifFalse: [ ^ TeaResponse notFound ]
+
+]
+
 { #category : #accessing }
 Sich >> gtPreviewFor: aView [ 
 <gtView>
@@ -165,6 +176,19 @@ self resetTasks
 { #category : #accessing }
 Sich >> money [
 	^ money
+]
+
+{ #category : #'as yet unclassified' }
+Sich >> postStateForRequest: aRequest [
+ |payload key stream working|
+working := FileSystem disk workingDirectory.
+key := aRequest at: #key.
+payload := (NeoJSONReader fromString: (aRequest entity contents)).
+(working / key) ensureCreateFile.
+stream := (working / key) writeStream.
+stream nextPutAll: (NeoJSONWriter toString: payload).
+stream close.
+^ payload 
 ]
 
 { #category : #'as yet unclassified' }
