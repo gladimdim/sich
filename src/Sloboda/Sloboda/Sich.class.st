@@ -9,7 +9,7 @@ Class {
 		'money',
 		'registry',
 		'tasks',
-		'states'
+		'dbPath'
 	],
 	#classInstVars : [
 		'server',
@@ -72,8 +72,8 @@ teapot
 	ifTrue: ([ sich doTask: (req at: #task) forSloboda: (req at:  #sloboda_id) withAmount: ((req at: #amount) asInteger) ] on: SubscriptOutOfBounds do: [ TeaResponse notFound  ])
 	ifFalse: [ TeaResponse notFound ]
 	 ];
-   POST: '/sich/db/states/' -> [ :req | sich postStateForRequest: req ]; output: #json;
-	 POST: '/sich/db/states/<key>' -> [ :req | sich postStateForRequest: req ]; output: #json;
+   POST: '/sich/db/states/' -> [ :req | sich postStateForRequest: req ]; output: #text;
+	 POST: '/sich/db/states/<key>' -> [ :req | sich postStateForRequest: req ]; output: #text;
    GET: '/sich/db/states/<key>' -> [ :req | sich getStateForRequest: req ]; output: #json.
 	
 	teapot start.
@@ -131,14 +131,9 @@ task := sloboda doTask: aTaskName withAmount: aNumber.
 ]
 
 { #category : #'as yet unclassified' }
-Sich >> getSloboda: aKey [
-^ states at: aKey ifAbsent: nil
-]
-
-{ #category : #'as yet unclassified' }
 Sich >> getStateForRequest: aRequest [
 |key stream working|
-working := FileSystem disk workingDirectory.
+working := FileSystem disk workingDirectory / dbPath.
 key := aRequest at: #key.
 (working / key) exists ifTrue: [ stream := (working / key) readStream .
 ^ (NeoJSONReader fromString: stream contents). ] ifFalse: [ ^ TeaResponse notFound ]
@@ -169,7 +164,7 @@ Sich >> initialize [
 money := 0.
 cossacks := 0.
 registry := Dictionary new.
-states := Dictionary new.
+dbPath := 'db/states'.
 self resetTasks
 
 ]
@@ -182,14 +177,14 @@ Sich >> money [
 { #category : #'as yet unclassified' }
 Sich >> postStateForRequest: aRequest [
  |payload key stream working|
-working := FileSystem disk workingDirectory.
-key := aRequest at: #key.
+working := FileSystem disk workingDirectory / dbPath.
+key := aRequest at: #key ifAbsent: (String generateRandom: 4).
 payload := (NeoJSONReader fromString: (aRequest entity contents)).
 (working / key) ensureCreateFile.
 stream := (working / key) writeStream.
 stream nextPutAll: (NeoJSONWriter toString: payload).
 stream close.
-^ payload 
+^ key 
 ]
 
 { #category : #'as yet unclassified' }
@@ -206,11 +201,6 @@ Sich >> resetTasks [
 tasks := SLTasks new.
 tasks addTask: (SLTask new localizedKey: 'sichTasks.sendCossacks'; localizedDescriptionKey: 'sichTasks.sendCossacksDescription'; target: (SLTarget cossacksWithAmount: 100); iconPath: 'images/city_props/cossack_64.png').
 tasks addTask: (SLTask new localizedKey: 'sichTasks.sendMoney'; localizedDescriptionKey: 'sichTasks.sendMoneyDescription'; target: (SLTarget moneyWithAmount: 100); iconPath: 'images/resources/food_64.png').
-]
-
-{ #category : #'as yet unclassified' }
-Sich >> saveSloboda: aKey withContent: aContent [
-states at: aKey put: aContent
 ]
 
 { #category : #accessing }
