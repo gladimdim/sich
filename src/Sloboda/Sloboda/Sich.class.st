@@ -72,6 +72,7 @@ teapot
 	ifTrue: ([ sich doTask: (req at: #task) forSloboda: (req at:  #sloboda_id) withAmount: ((req at: #amount) asInteger) ] on: SubscriptOutOfBounds do: [ TeaResponse notFound  ])
 	ifFalse: [ TeaResponse notFound ]
 	 ];
+   POST: '/sich/db/states/' -> [ :req | sich postStateForRequest: req ]; output: #json;
 	 POST: '/sich/db/states/<key>' -> [ :req | sich postStateForRequest: req ]; output: #json;
    GET: '/sich/db/states/<key>' -> [ :req | sich getStateForRequest: req ]; output: #json.
 	
